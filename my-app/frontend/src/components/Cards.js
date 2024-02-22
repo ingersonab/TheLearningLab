@@ -6,7 +6,7 @@ import CardItem from './CardItem';
 function Cards() {
   return (
     <div className='cards'>
-      <img src={require('/Users/alyssaingerson/Desktop/react-website-v1/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
+      <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
       <div className='cards__container'>
         <div className='cards__wrapper'>
           

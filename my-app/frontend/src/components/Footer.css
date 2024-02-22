@@ -157,6 +157,11 @@
   .social-media-wrap {
     flex-direction: column;
   }
+
+  .footer{
+    position: absolute;
+    bottom: 0;
+  }
 }
 
 @media screen and (max-width: 768px) {

@@ -1,29 +1,22 @@
-import React from 'react';
+import React from 'react'
+import Login from './components/pages/Login'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Navbar from './components/Navbar';
-import './App.css';
-import Login from './components/pages/Login';
-import Home from './components/pages/Home';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Services from './components/pages/Services';
-import Products from './components/pages/Products';
-import SignUp from './components/pages/SignUp';
+import SignUp from './components/pages/SignUp'
+import Home from './components/pages/Home'
+import Footer from './components/Footer';
 
-
-function App() {
+function App() {  
   return (
-    <>
-      <Router>
-      <Navbar />
-        <Switch>
-          <Route path='/' exact component={Login} />
-          <Route path='/home' exact component={Home} />
-          <Route path='/services' component={Services} />
-          <Route path='/products' component={Products} />
-          <Route path='/signup' component={SignUp} />
-        </Switch>
-      </Router>
-    </>
-  );
+    <BrowserRouter>      
+      <Navbar/>  
+      <Routes>            
+        <Route path='/' element={<Login />}/>            
+        <Route path='/signup' element={<SignUp />}></Route>            
+        <Route path='/home' element={<Home />}></Route>        
+      </Routes>  
+      <Footer/>  
+    </BrowserRouter>  
+  )
 }
-
 export default App;
