@@ -1,6 +1,12 @@
 .cards {
   padding: 4rem;
-  background: #32cd32;
+  background: #f5f8f4;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  margin-top: 80px;
+  position: absolute;
+  top: 0;
 }
 
 h1 {

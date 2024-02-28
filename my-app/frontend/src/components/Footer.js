@@ -4,6 +4,10 @@ import { Button } from './Button';
 import { Link } from 'react-router-dom';
 
 function Footer() {
+  const myStyle = {
+    marginTop: "3000px"
+
+  }
   return (
     <div className='footer-container'>
     
