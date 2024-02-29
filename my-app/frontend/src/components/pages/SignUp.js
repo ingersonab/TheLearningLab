@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Validation from './SignupValidation';
 import axios from 'axios'
 import '../../App.css';
-
 
 function Signup() {
   const myStyle = {
@@ -24,25 +23,61 @@ function Signup() {
     const [values, setValues] = useState({        
       name: '',        
       email: '',        
-      password: ''    
-    })    
+      password: '',
+      userType: ''    
+    })  
+    const [selectedUserType, setSelectedUserType] = useState('');  
     const navigate = useNavigate();    
     const [errors, setErrors] = useState({})    
-    const handleInput = (event) => {        
-      setValues(prev => ({...prev, [event.target.name]: event.target.value}))    
-    }    
-    const handleSubmit = (event) => {        
+    const handleInput = (event) => {   
+      const { name, value, type, checked } = event.target;
+
+      console.log('Name:', name);
+      console.log('Value:', value);
+      console.log('Type:', type);
+      console.log('Checked:', checked);
+
+      if (type !== 'radio') {
+        setValues(prev => ({ ...prev, [name]: value }));
+      } else if (checked) {
+        setValues(prev => ({ ...prev, userType: value }));
+      }
+    };
+
+    useEffect(() => {
+      console.log('Updated Values:', values);
+    }, [values]);
+    
+    const handleSubmit = async (event) => {        
       event.preventDefault();        
       const err = Validation(values);  
-      setErrors(err);         
+      setErrors(err); 
+      const radioButtons = document.querySelectorAll('input[name="userType"]');
+      let userType = '';
+      for(const radioButton of radioButtons){
+        if(radioButton.checked){
+          userType = radioButton.value;
+          break;
+        }
+      }
+      setSelectedUserType(userType);
+
+      await new Promise(resolve => {
+        setValues(prev => ({ ...prev, userType: userType }));
+        resolve()
+      });
+      
       if(err.name === "" && err.email === "" && err.password === "") {            
         axios.post('http://localhost:8081/signup', values)            
-        .then(res => {                
+        .then(res => { 
+          alert("Account successfully created!");               
           navigate('/');            
         })            
-        .catch(err => console.log(err));        
-      }    
+        .catch(err => console.log(err))      
+      }
+          
     }
+    
     return (    
       <div className='d-flex justify-content-center align-items-center bg-success vh-100'>        
       <div className='bg-white p-3 rounded w-25' style={myStyle}>            
@@ -67,20 +102,21 @@ function Signup() {
           <h4>Are you a teacher or a student?</h4>
           <div>
             <label>
-              <input type="radio" name="user_type" value="teacher"/>
+              <input type="radio" name="userType" value="teacher" onChange={handleInput} defaultChecked/>
               Teacher
             </label>
-          </div> 
-          <div>
             <label>
-              <input type="radio" name="user_type" value="student" checked/>
+              <input type="radio" name="userType" value="student" onChange={handleInput}/>
               Student
             </label>
           </div>             
-          <button type='submit' className='btn btn-primary w-100 rounded-0'> Sign up</button>                
+          <button type='submit' className='btn bg-primary w-100 rounded-0'> Sign up</button>                
           <Link to="/" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Login</Link>            
       </form>        
       </div></div>  
+    /* <div>
+      {selectedUserType ? `You selected ${selectedUserType}` : `You haven't selected any user type`}
+    </div>*/
     )
 }
 

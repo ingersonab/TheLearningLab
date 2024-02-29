@@ -14,20 +14,22 @@ const db = mysql.createConnection({
 })
 
 app.post('/signup', (req, res) => {
-    const sql = "INSERT INTO login (`name`,`email`, `password`) VALUES (?)";
+    console.log(req.body);
+    const sql = "INSERT INTO login (`name`,`email`, `password`, `userType`) VALUES (?, ?, ?, ?)";
     const values = [
         req.body.name,
         req.body.email,
-        req.body.password
-
-    ]
-    db.query(sql, [values], (err, data) =>{
+        req.body.password,
+        req.body.userType
+        
+    ];
+    db.query(sql, values, (err, data) =>{
         if(err){
             return res.json("Error");
         }
         return res.json(data);
-    })
-})
+    });
+});
 
 app.post('/login', (req, res) => {
     const sql = "SELECT * FROM login WHERE `email` = ? AND `password` = ?";
