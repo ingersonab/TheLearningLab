@@ -73,7 +73,13 @@ function Signup() {
           alert("Account successfully created!");               
           navigate('/');            
         })            
-        .catch(err => console.log(err))      
+        .catch(err => {
+          if(err.response.status === 400){
+            alert("Email is already in use. Please use a different email.");
+          }else{
+            console.error(err);
+            alert("An unexpected error occurred.");
+          }})      
       }
           
     }
@@ -87,24 +93,28 @@ function Signup() {
           <div className='mb-3'>                    
             <label htmlFor="name"><strong>Name: &nbsp;</strong></label>                    
             <input type="text" placeholder='Enter Name' name='name' onChange={handleInput} className='rounded-0'/>                    
+            <br/>
             {errors.name && <span className='text-danger'> {errors.name}</span>}                
           </div>                
           <div className='mb-3'>                    
             <label htmlFor="email"><strong>Email: &nbsp;</strong></label>                    
             <input type="email" placeholder='Enter Email' name='email' onChange={handleInput} className='rounded-0'/>                    
+            <br/>
             {errors.email && <span className='text-danger'> {errors.email}</span>}                
           </div>                
           <div className='mb-3'>                    
             <label htmlFor="password"><strong>Password: &nbsp;</strong></label>                    
             <input type="password" placeholder='Enter Password' name='password' onChange={handleInput} className='rounded-0'/>                    
+            <br/>
             {errors.password && <span className='text-danger'> {errors.password}</span>}                
           </div>  
           <h4>Are you a teacher or a student?</h4>
           <div>
             <label>
-              <input type="radio" name="userType" value="teacher" onChange={handleInput} defaultChecked/>
+              <input type="radio" name="userType" value="teacher" onChange={handleInput}/>
               Teacher
             </label>
+            <br/>
             <label>
               <input type="radio" name="userType" value="student" onChange={handleInput}/>
               Student

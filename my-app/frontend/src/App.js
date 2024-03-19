@@ -4,7 +4,8 @@ import Login from './components/pages/Login'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Navbar from './components/Navbar';
 import SignUp from './components/pages/SignUp'
-import Home from './components/pages/Home'
+import TeacherHome from './components/pages/TeacherHome'
+import StudentHome from './components/pages/StudentHome'
 import Courses from './components/pages/Courses'
 import Announcement from './components/pages/Announcement'
 import Footer from './components/Footer';
@@ -17,7 +18,8 @@ function App() {
       <Routes>            
         <Route path='/' element={<Login />}/>            
         <Route path='/signup' element={<SignUp />}></Route>            
-        <Route path='/home' element={<Home />}></Route>
+        <Route path='/teacherhome' element={<TeacherHome />}></Route>
+        <Route path='/studenthome' element={<StudentHome />}></Route>
         <Route path='/courses' element={<Courses />}></Route>
         <Route path='/announcement' element={<Announcement />}></Route>      
       </Routes>  

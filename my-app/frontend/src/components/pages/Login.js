@@ -40,8 +40,15 @@ function Login() {
             setBackendError(res.data.errors);                
           } else {                    
             setBackendError([]);                    
-            if(res.data === "Success") {                        
-              navigate('/home');                    
+            if(res.data.status === "Success") {                        
+              const userType = res.data.userType;
+              if(userType === "teacher"){
+                navigate('/teacherhome');
+              }else if(userType === "student"){
+                navigate('/studenthome');
+              }else{
+                alert("Invalid userType received");
+              }                     
             } else {                        
               alert("Email or Password is incorrect, or account does not exist.");     
             }                
@@ -61,11 +68,13 @@ function Login() {
           <div className='mb-3'>                    
             <label htmlFor="email"><strong>Email: &nbsp;</strong></label>                    
             <input type="email" placeholder='Enter Email' name='email' onChange={handleInput} className='rounded-0'/>                    
+            <br/>
             {errors.email && <span className='text-danger'> {errors.email}</span>}
           </div>                
           <div className='mb-3'>                    
             <label htmlFor="password"><strong>Password: &nbsp;</strong></label>                    
             <input type="password" placeholder='Enter Password' name='password' onChange={handleInput} className='rounded-0'/>                    
+            <br/>
             {errors.password && <span className='text-danger'> {errors.password}</span>}                
           </div>                
           <button type='submit' className='btn bg-primary w-100 rounded-0'> Log in</button>                              
