@@ -1,16 +1,50 @@
-const express = require("express");
+const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["POST", "GET"],
+    credentials: true
+}));
 app.use(express.json());
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(session({
+    secret: 'secret', //a secret key used to encrypt the session cookie
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        maxAge: 1000 * 60 * 60 * 24
+    } //set session cookie properties
+}))
 
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
     database: "Login"
+})
+
+app.get('/teacherhome', (req, res)=>{
+    if(req.session.name){
+        return res.json({valid: true, name: req.session.name})
+    }else{
+        return res.json({valid: false})
+    }
+})
+
+app.get('/studenthome', (req, res)=>{
+    if(req.session.name){
+        return res.json({valid: true, name: req.session.name})
+    }else{
+        return res.json({valid: false})
+    }
 })
 
 app.post('/signup', (req, res) => {
@@ -64,18 +98,56 @@ app.post('/signup', (req, res) => {
     }
 });
 
+const bcrypt = require('bcryptjs');
+
 app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM login WHERE `email` = ? AND `password` = ?";
-    db.query(sql, [req.body.email,req.body.password], (err, data) =>{
+    const sql = "SELECT name, email, password, userType FROM login WHERE `email` = ?";
+    console.log("Starting query");
+    db.query(sql, [req.body.email], (err, data) =>{
+        console.log("Inside query function");
         if(err){
+            console.error("Database error: ", err);
             return res.json("Error");
         }
-        if(data.length > 0){
-            const userType = data[0].userType;
-            return res.json({ status: "Success", userType: userType});
-        }else{
-            return res.json("Failed");
+        console.log("no database error");
+
+        console.log("Data from DB: ", data);
+
+        if(data.length === 0){
+            return res.json("Invalid Email or Password");
         }
+
+        const {name, email, pasword, userType} = data[0];
+
+        console.log("Hashing password");
+        const hashedPassword = data[0].password;
+
+        console.log("Hashed password from database:", hashedPassword);
+        console.log("Password sent in request:", req.body.password);
+
+        console.log("Before bcrypt.compare");
+
+        bcrypt.compare(req.body.password[0], hashedPassword, (bcryptError, result) => {
+            console.log("Inside bcrypt.compare");
+            if(bcryptError){
+                console.error("bcrypt error: ", bcryptError);
+                return res.json("Internal Server Error");
+            }
+
+            console.log("bcrypt compare result:", result);
+
+            if(result){
+                req.session.name = data[0].name;
+                console.log(req.session.name);
+                return res.json({ status: "Success", username: req.session.name, userType });
+            }else{
+                return res.json({ error: "Incorrect Password" });
+            }
+        })
+
+        console.log(req.body);
+
+        console.log("After bcrypt.compare");
     })
 })
 app.listen(8081, ()=>{

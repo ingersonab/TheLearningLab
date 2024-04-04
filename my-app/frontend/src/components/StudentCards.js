@@ -4,6 +4,7 @@ import CardItem from './CardItem';
 
 
 function StudentCards() {
+  
   return (
     <div className='cards'>
       <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />

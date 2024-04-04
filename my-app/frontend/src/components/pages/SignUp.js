@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Validation from './SignupValidation';
 import axios from 'axios'
+import bcrypt from 'bcryptjs';
 import '../../App.css';
 
 function Signup() {
+
   const myStyle = {
     backgroundColor: "#74bc3c",
     backgroundPosition: "center",
@@ -68,13 +70,16 @@ function Signup() {
       });
       
       if(err.name === "" && err.email === "" && err.password === "") {            
-        axios.post('http://localhost:8081/signup', values)            
+        
+        const hashedPassword = bcrypt.hashSync(values.password, 10);
+
+        axios.post('http://localhost:8081/signup', { ...values, password: hashedPassword})            
         .then(res => { 
           alert("Account successfully created!");               
           navigate('/');            
         })            
         .catch(err => {
-          if(err.response.status === 400){
+          if(err.response && err.response.status === 400){
             alert("Email is already in use. Please use a different email.");
           }else{
             console.error(err);
@@ -122,7 +127,7 @@ function Signup() {
           </div>             
           <button type='submit' className='btn bg-primary w-100 rounded-0'> Sign up</button>                
           <Link to="/" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Login</Link>            
-      </form>        
+      </form>       
       </div></div>  
     /* <div>
       {selectedUserType ? `You selected ${selectedUserType}` : `You haven't selected any user type`}
