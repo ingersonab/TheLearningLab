@@ -5,6 +5,7 @@ import Validation from './LoginValidation';
 import bcrypt from 'bcryptjs';
 import '../../App.css';
 
+
 function Login() {  
     const myStyle = {
       backgroundColor: "#74bc3c",
@@ -32,29 +33,47 @@ function Login() {
     } 
     axios.defaults.withCredentials = true;
 
-    useEffect(()=> {
-      axios.get('http://localhost:8081/studenthome')
-      .then(res => {
-        if(res.data.valid){
+    //session storage redirect
+    useEffect(() => {
+      console.log('User Type in Session Storage:', sessionStorage.getItem('userType'));
+      if (sessionStorage.getItem('userType') === 'student') {
+          console.log('Redirect to studenthome');
           navigate('/studenthome');
-        }else{
-          navigate('/')
-        }
-      })
-      .catch(err => console.log(err))
-    }, [])
-
-    useEffect(()=> {
-      axios.get('http://localhost:8081/teacherhome')
-      .then(res => {
-        if(res.data.valid){
+      } else if (sessionStorage.getItem('userType') === 'teacher') {
+          console.log('Redirect to teacher home');
           navigate('/teacherhome');
-        }else{
-          navigate('/')
+      }
+    }, []);
+
+    /*const handleLogout = () =>{
+      sessionStorage.removeItem('userType');
+      sessionStorage.removeItem('userId');
+      navigate('/login');
+    }*/
+    
+    //initial redirect
+    useEffect(() => {
+      const userType = sessionStorage.getItem('userType');
+      if (!userType) {
+        axios.get('http://localhost:8081/studenthome')
+        .then(res => {
+          if (res.data.valid) {
+          console.log('Student Home Response: ', res.data);
+          navigate('/studenthome');
         }
-      })
-      .catch(err => console.log(err))
-    }, [])
+        })
+        .catch(err => console.log(err));
+
+        axios.get('http://localhost:8081/teacherhome')
+        .then(res => {
+          if (res.data.valid) {
+            console.log('Teacher Home Response: ', res.data);
+            navigate('/teacherhome');
+          }
+        })
+        .catch(err => console.log(err));
+      }
+    }, [navigate]);
 
     const handleSubmit =(event) => {        
       event.preventDefault();        
@@ -70,7 +89,11 @@ function Login() {
             setBackendError([]);                    
             if(res.data.status === "Success") {                        
               const userType = res.data.userType;
+              const userId = res.data.userId;
+              sessionStorage.setItem('userType', userType) //set userType in session storage
+              sessionStorage.setItem('userId', userId);
               console.log("User Type: ", userType);
+              console.log("User ID: ", userId)
               if(userType === "teacher"){
                 navigate('/teacherhome');
               }else if(userType === "student"){
@@ -87,7 +110,8 @@ function Login() {
       }    
     }
 
-  return (    
+  return (   
+    <div className="login-container">  
       <div className='d-flex justify-content-center align-items-center bg-success vh-100'>        
         <div className='bg-white p-3 rounded w-25' style={myStyle}>
           <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={200} width={200} />            
@@ -106,12 +130,14 @@ function Login() {
               <input type="password" placeholder='Enter Password' name='password' onChange={handleInput} className='rounded-0'/>                    
               <br/>
               {errors.password && <span className='text-danger'> {errors.password}</span>}                
-            </div>                
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                
             <button type='submit' className='btn bg-primary w-100 rounded-0'> Log in</button>                              
             <Link to="/signup" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Create Account</Link>            
           </form>        
         </div>    
-      </div>  
+      </div> 
+    </div> 
   )
 }
 

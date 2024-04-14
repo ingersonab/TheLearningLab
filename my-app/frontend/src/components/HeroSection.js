@@ -1,30 +1,27 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
 import '../App.css';
-import { Button } from './Button';
 import './HeroSection.css';
 
 function HeroSection() {
+
+  let navigate = useNavigate();
+
+  const routeChange = () =>{
+    navigate('/signup');
+  }
+
   return (
-    <div className='hero-container'>
-      <video src='/videos/video-1.mp4' autoPlay loop muted />
-      <h1>ADVENTURE AWAITS</h1>
-      <p>What are you waiting for?</p>
+    <div className='hero-container' style={{backgroundImage: `url(${require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/kimberly-farmer-lUaaKCUANVI-unsplash.jpg')})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+      <div className="logo-container">
+        <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={200} width={200} />
+      </div>
+      <div className="text-container">
+        <h1>The Learning Lab</h1>
+        <p>Gamified learning made easy.</p>
+      </div>
       <div className='hero-btns'>
-        <Button
-          className='btns'
-          buttonStyle='btn--outline'
-          buttonSize='btn--large'
-        >
-          GET STARTED
-        </Button>
-        <Button
-          className='btns'
-          buttonStyle='btn--primary'
-          buttonSize='btn--large'
-          onClick={console.log('hey')}
-        >
-          WATCH TRAILER <i className='far fa-play-circle' />
-        </Button>
+        <button className="px-4" style={{ fontSize: '20px', padding: '12px 24px' }} onClick={routeChange}>SIGN UP</button>
       </div>
     </div>
   );

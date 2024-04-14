@@ -136,10 +136,14 @@ app.post('/login', (req, res) => {
 
             console.log("bcrypt compare result:", result);
 
+            console.log(data[0].userType);
+            
             if(result){
+                req.session.userId = data[0].email;
                 req.session.name = data[0].name;
                 console.log(req.session.name);
-                return res.json({ status: "Success", username: req.session.name, userType });
+                console.log(req.session.userId);
+                return res.json({ status: "Success", userId: req.session.userId, username: req.session.name, userType: data[0].userType });
             }else{
                 return res.json({ error: "Incorrect Password" });
             }
@@ -148,6 +152,17 @@ app.post('/login', (req, res) => {
         console.log(req.body);
 
         console.log("After bcrypt.compare");
+    })
+})
+
+app.post('/logout', (req, res) => {
+    req.session.destroy((err) =>{
+        if(err){
+            console.error('Session destroy unsuccessful: ', err)
+            return res.json({error: 'Logout unsuccessful'});
+        }
+        res.clearCookie('connect.sid'); //clear user session cookie
+        res.json({message: 'Logout successful'});
     })
 })
 app.listen(8081, ()=>{

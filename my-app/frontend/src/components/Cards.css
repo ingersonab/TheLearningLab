@@ -22,6 +22,21 @@ h1 {
   margin: 0 auto;
 }
 
+.cards_and_header_container {
+  text-align: center;
+}
+
+.card_container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  align-items: center;
+  max-width: 1120px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 40px;
+}
+
 .cards__wrapper {
   position: relative;
   margin: 50px 0 45px;

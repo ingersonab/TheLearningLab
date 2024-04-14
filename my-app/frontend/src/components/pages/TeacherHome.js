@@ -16,7 +16,7 @@ function TeacherHome() {
       if(res.data.valid){
         setName(res.data.name);
       }else{
-        navigate('/')
+        navigate('/login')
       }
     })
     .catch(err => console.log(err))

@@ -76,7 +76,7 @@ function Signup() {
         axios.post('http://localhost:8081/signup', { ...values, password: hashedPassword})            
         .then(res => { 
           alert("Account successfully created!");               
-          navigate('/');            
+          navigate('/login');            
         })            
         .catch(err => {
           if(err.response && err.response.status === 400){
@@ -96,13 +96,15 @@ function Signup() {
         <h2>Sign-Up</h2>            
         <form action="" onSubmit={handleSubmit}>                
           <div className='mb-3'>                    
-            <label htmlFor="name"><strong>Name: &nbsp;</strong></label>                    
+            <label htmlFor="name"><strong>Name: &nbsp;</strong></label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    
             <input type="text" placeholder='Enter Name' name='name' onChange={handleInput} className='rounded-0'/>                    
             <br/>
             {errors.name && <span className='text-danger'> {errors.name}</span>}                
           </div>                
           <div className='mb-3'>                    
-            <label htmlFor="email"><strong>Email: &nbsp;</strong></label>                    
+            <label htmlFor="email"><strong>Email: &nbsp;</strong></label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    
             <input type="email" placeholder='Enter Email' name='email' onChange={handleInput} className='rounded-0'/>                    
             <br/>
             {errors.email && <span className='text-danger'> {errors.email}</span>}                
@@ -126,7 +128,7 @@ function Signup() {
             </label>
           </div>             
           <button type='submit' className='btn bg-primary w-100 rounded-0'> Sign up</button>                
-          <Link to="/" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Login</Link>            
+          <Link to="/login" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Login</Link>            
       </form>       
       </div></div>  
     /* <div>
