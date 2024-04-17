@@ -10,6 +10,8 @@ import StudentHome from './components/pages/StudentHome'
 import Courses from './components/pages/Courses'
 import Announcement from './components/pages/Announcement'
 import About from './components/pages/About'
+import CourseHome from './components/pages/CourseHome'
+import CoursePage from './components/pages/CoursePage'
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -29,7 +31,9 @@ function App() {
         <Route path='/studenthome' element={<StudentHome />}></Route>
         <Route path='/courses' element={<Courses />}></Route>
         <Route path='/announcement' element={<Announcement />}></Route> 
-        <Route path='/about' element={<About />}></Route>       
+        <Route path='/about' element={<About />}></Route>    
+        <Route path='/coursehome' element={<CourseHome />}></Route>  
+        <Route path="/course/:courseId" element={<CoursePage />}></Route>
       </Routes> 
       <Footer/> 
     </BrowserRouter>  

@@ -15,12 +15,12 @@ function  Homepage() {
             <div className="cards_and_header_container">
                 <h2>Add competition in the classroom using our gaming features!</h2>
                 <div className="card_container">
-                    <Card sx={{ maxWidth: 500 }}>
+                    <Card sx={{ maxWidth: 400 }}>
                         <CardMedia
                             component="img"
                             alt="green iguana"
-                            height="140"
-                            image="/static/images/cards/contemplative-reptile.jpg"
+                            height="125"
+                            image={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/coursePreview.jpeg')}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h4" component="div">
@@ -31,11 +31,11 @@ function  Homepage() {
                             </Typography>
                         </CardContent>
                     </Card>
-                    <Card sx={{ maxWidth: 500 }}>
+                    <Card sx={{ maxWidth: 400 }}>
                         <CardMedia
                             component="img"
                             alt="green iguana"
-                            height="140"
+                            height="125"
                             image="/static/images/cards/contemplative-reptile.jpg"
                         />
                         <CardContent>
@@ -47,11 +47,11 @@ function  Homepage() {
                             </Typography>
                         </CardContent>
                     </Card>
-                    <Card sx={{ maxWidth: 500 }}>
+                    <Card sx={{ maxWidth: 400 }}>
                         <CardMedia
                             component="img"
                             alt="green iguana"
-                            height="140"
+                            height="125"
                             image="/static/images/cards/contemplative-reptile.jpg"
                         />
                         <CardContent>
@@ -65,7 +65,9 @@ function  Homepage() {
                     </Card>
                 </div>
             </div>
-            <Slideshow/>
+            <div className="slideshow-container">
+                <Slideshow/>
+            </div>
         </div>
     )
 }

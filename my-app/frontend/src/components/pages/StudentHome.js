@@ -23,8 +23,11 @@ function StudentHome() {
   }, [])
   return (
     <div className='cards'>
-      <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
-      <h2>Welcome Back {name}!</h2>
+      <div className='header-container'>
+        <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
+        <h2>Welcome Back {name}!</h2>
+        <hr style={{ color: 'gray', backgroundColor: 'gray', height: 1 }} />
+      </div>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           

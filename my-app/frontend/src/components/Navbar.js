@@ -19,7 +19,7 @@ function Navbar() {
 
   const [click, setClick] = useState(false);
   const isAuthenticated = !!sessionStorage.getItem('userType');
-  //const [buttonVisible, setButtonVisible] = useState(true);
+  const [buttonVisible, setButtonVisible] = useState(true);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -29,7 +29,7 @@ function Navbar() {
   //console.log(isAuthenticated);
 
 
- /* const showButton = () => {
+  /*const showButton = () => {
     if (window.innerWidth <= 960) {
       setButtonVisible(true);
     } else {
@@ -41,9 +41,9 @@ function Navbar() {
     showButton();
   }, []);
 
-  window.addEventListener('resize', showButton);*/
+  window.addEventListener('resize', showButton);
 
-  /*useEffect(() => {
+  useEffect(() => {
     const showButton = () => {
       if (window.innerWidth <= 960) {
         setButtonVisible(true);
@@ -98,20 +98,11 @@ function Navbar() {
               </Link>
             </li>
 
-            <li>
-            <Link
-              to={isAuthenticated ? (isAuthenticated === 'student' ? '/studenthome' : '/teacherhome') : '/login'}
-              className='nav-links-mobile'
-              onClick={closeMobileMenu}
-            >
-              
-            </Link>
-          </li>
+            {isAuthenticated &&(
+                <Button buttonStyle='btn--outline logout-button' buttonText='LOG OUT' onClick={handleLogout}/>
+            )}
+          </ul>
           
-        </ul>
-        {isAuthenticated &&(
-          <Button buttonStyle='btn--outline' buttonText='LOG OUT' onClick={handleLogout}/>
-        )}
         </div>
       </nav>
       

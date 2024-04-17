@@ -9,30 +9,77 @@ body {
   font-family: 'PT Sans', sans-serif;
 }
 
+.form-container {
+  background-color: #E5E4E2;
+  margin-left: 25%;
+  margin-right: 25%;
+  outline-style: solid;
+  outline-color: gray;
+  box-shadow: 10px 10px 5px;
+  padding: 50px;
+}
+
+.course-page-container {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+.course-header-container {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  text-align: left;
+  background-color: #53b2d8;
+  margin-top: -30px;
+  padding-left: 20px;
+}
+
+.student-entry-container {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  border-radius: 25px;
+  background-color: #8B9FB6;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  width: 300px;
+  margin-right: 60%;
+  margin-left: 10px;
+  outline-style: solid;
+  outline-color: gray;
+  box-shadow: 10px 10px 5px;
+  padding: 50px;
+}
+h4 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
 .homepage-container {
   margin-top: -25px;
   padding-top: 0;
 }
 
 .cards_and_header_container {
+  margin: -20px;
+  background-color: #53b2d8;
+  padding: 20px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
 }
 
+.slideshow-container {
+  background-color: #B4CEB4;
+  padding: 40px;
+}
+
+.header-container {
+  background-color: #53b2d8;
+  margin: -40px;
+}
+
 .login-container {
-  background-color: #74bc3c;
-  background-position: center;
-  background-size: fill;
-  background-repeat: no-repeat;
-  color: black;
-  font-size: 20px;
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
-  margin-top: 80px;
-  position: absolute;
-  top: 0;
-  
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+  'Lucida Sans', Arial, sans-serif;
 }
 
 .home,

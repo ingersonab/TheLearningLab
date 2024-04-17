@@ -8,7 +8,7 @@ import '../../App.css';
 function Signup() {
 
   const myStyle = {
-    backgroundColor: "#74bc3c",
+    backgroundColor: "#53b2d8",
     backgroundPosition: "center",
     backgroundSize: "fill",
     backgroundRepeat: "no-repeat",
@@ -93,43 +93,45 @@ function Signup() {
       <div className='d-flex justify-content-center align-items-center bg-success vh-100'>        
       <div className='bg-white p-3 rounded w-25' style={myStyle}>            
         <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={200} width={200} />           
-        <h2>Sign-Up</h2>            
-        <form action="" onSubmit={handleSubmit}>                
-          <div className='mb-3'>                    
-            <label htmlFor="name"><strong>Name: &nbsp;</strong></label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    
-            <input type="text" placeholder='Enter Name' name='name' onChange={handleInput} className='rounded-0'/>                    
-            <br/>
-            {errors.name && <span className='text-danger'> {errors.name}</span>}                
-          </div>                
-          <div className='mb-3'>                    
-            <label htmlFor="email"><strong>Email: &nbsp;</strong></label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    
-            <input type="email" placeholder='Enter Email' name='email' onChange={handleInput} className='rounded-0'/>                    
-            <br/>
-            {errors.email && <span className='text-danger'> {errors.email}</span>}                
-          </div>                
-          <div className='mb-3'>                    
-            <label htmlFor="password"><strong>Password: &nbsp;</strong></label>                    
-            <input type="password" placeholder='Enter Password' name='password' onChange={handleInput} className='rounded-0'/>                    
-            <br/>
-            {errors.password && <span className='text-danger'> {errors.password}</span>}                
-          </div>  
-          <h4>Are you a teacher or a student?</h4>
-          <div>
-            <label>
-              <input type="radio" name="userType" value="teacher" onChange={handleInput}/>
-              Teacher
-            </label>
-            <br/>
-            <label>
-              <input type="radio" name="userType" value="student" onChange={handleInput}/>
-              Student
-            </label>
-          </div>             
-          <button type='submit' className='btn bg-primary w-100 rounded-0'> Sign up</button>                
-          <Link to="/login" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Login</Link>            
-      </form>       
+        <div className='form-container'>
+          <h2>Sign-Up</h2>            
+          <form action="" onSubmit={handleSubmit}>                
+            <div className='mb-3'>                    
+              <label htmlFor="name"><strong>Name: &nbsp;</strong></label>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    
+              <input type="text" placeholder='Enter Name' name='name' style={{maxWidth: '100%'}} onChange={handleInput} className='rounded-0'/>                    
+              <br/>
+              {errors.name && <span className='text-danger'> {errors.name}</span>}                
+            </div>                
+            <div className='mb-3'>                    
+              <label htmlFor="email"><strong>Email: &nbsp;</strong></label>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    
+              <input type="email" placeholder='Enter Email' name='email' style={{maxWidth: '100%'}} onChange={handleInput} className='rounded-0'/>                    
+              <br/>
+              {errors.email && <span className='text-danger'> {errors.email}</span>}                
+            </div>                
+            <div className='mb-3'>                    
+              <label htmlFor="password"><strong>Password: &nbsp;</strong></label>                    
+              <input type="password" placeholder='Enter Password' name='password' style={{maxWidth: '100%'}} onChange={handleInput} className='rounded-0'/>                    
+              <br/>
+              {errors.password && <span className='text-danger'> {errors.password}</span>}                
+            </div>  
+            <h4>Are you a teacher or a student?</h4>
+            <div>
+              <label>
+                <input type="radio" name="userType" value="teacher" onChange={handleInput}/>
+                Teacher
+              </label>
+              <br/>
+              <label>
+                <input type="radio" name="userType" value="student" onChange={handleInput}/>
+                Student
+              </label>
+            </div>             
+            <button type='submit' className='btn bg-primary w-100 rounded-0'> Sign up</button>                
+            <Link to="/login" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Login</Link>            
+        </form>
+      </div>       
       </div></div>  
     /* <div>
       {selectedUserType ? `You selected ${selectedUserType}` : `You haven't selected any user type`}

@@ -32,6 +32,7 @@ function Slideshow(){
 
     return(
         <div className="slideshow">
+            <h2>Education through a growing selection of review games!</h2>
             <div className="slideshowSlider"
             style={{transform: `translate3d(${-index * 100}%, 0, 0)`}}
             >
@@ -57,7 +58,7 @@ function Slideshow(){
                 ))}
             </div>
 
-            <h2>Education through a growing selection of review games!</h2>
+            
         </div>
     )
 }

@@ -15,6 +15,7 @@ function TeacherHome() {
     .then(res => {
       if(res.data.valid){
         setName(res.data.name);
+        console.log('session name:', name);
       }else{
         navigate('/login')
       }
@@ -23,16 +24,19 @@ function TeacherHome() {
   }, [])
   return (
     <div className='cards'>
-      <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
-      <h2>Welcome Back {name}!</h2>
+      <div className='header-container'>
+        <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
+        <h2>Welcome Back {name}!</h2>
+        <hr style={{ color: 'gray', backgroundColor: 'gray', height: 1 }} />
+      </div>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           
           <ul className='cards__items'>
             <CardItem
               src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/classroom.jpg')}
-              text='Create Course'
-              path='/courses'
+              text='My Courses'
+              path='/coursehome'
             />
             <CardItem
               src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/megaphone.jpeg')}

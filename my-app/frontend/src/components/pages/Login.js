@@ -8,7 +8,7 @@ import '../../App.css';
 
 function Login() {  
     const myStyle = {
-      backgroundColor: "#74bc3c",
+      backgroundColor: "#53b2d8",
       backgroundPosition: "center",
       backgroundSize: "fill",
       backgroundRepeat: "no-repeat",
@@ -19,7 +19,7 @@ function Login() {
       textAlign: "center",
       marginTop: "80px",
       position: "absolute",
-      top: 0
+      top: 0,
     };
     const [values, setValues] = useState({        
       email: '',        
@@ -90,6 +90,7 @@ function Login() {
             if(res.data.status === "Success") {                        
               const userType = res.data.userType;
               const userId = res.data.userId;
+              
               sessionStorage.setItem('userType', userType) //set userType in session storage
               sessionStorage.setItem('userId', userId);
               console.log("User Type: ", userType);
@@ -115,26 +116,28 @@ function Login() {
       <div className='d-flex justify-content-center align-items-center bg-success vh-100'>        
         <div className='bg-white p-3 rounded w-25' style={myStyle}>
           <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={200} width={200} />            
-          <h2>Login</h2>            
-          {backendError ? backendError.map( e => (<p className='text-danger'>{e.msg}</p>)) : <span></span>}            
-          <form action="" onSubmit={handleSubmit}>                
-            <div className='mb-3'>                    
-              <label htmlFor="email"><strong>Email: &nbsp;</strong></label>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    
-              <input type="email" placeholder='Enter Email' name='email' onChange={handleInput} className='rounded-0'/>                    
-              <br/>
-              {errors.email && <span className='text-danger'> {errors.email}</span>}
-            </div>                
-            <div className='mb-3'>                    
-              <label htmlFor="password"><strong>Password: &nbsp;</strong></label>                    
-              <input type="password" placeholder='Enter Password' name='password' onChange={handleInput} className='rounded-0'/>                    
-              <br/>
-              {errors.password && <span className='text-danger'> {errors.password}</span>}                
-            </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                
-            <button type='submit' className='btn bg-primary w-100 rounded-0'> Log in</button>                              
-            <Link to="/signup" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Create Account</Link>            
-          </form>        
+          <div className='form-container'> 
+            <h2>Login</h2>            
+            {backendError ? backendError.map( e => (<p className='text-danger'>{e.msg}</p>)) : <span></span>}            
+            <form action="" onSubmit={handleSubmit}>                
+              <div className='mb-3'>                    
+                <label htmlFor="email"><strong>Email: &nbsp;</strong></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    
+                <input type="email" placeholder='Enter Email' name='email' style={{maxWidth: '100%'}} onChange={handleInput} className='rounded-0'/>                    
+                <br/>
+                {errors.email && <span className='text-danger'> {errors.email}</span>}
+              </div>                
+              <div className='mb-3'>                    
+                <label htmlFor="password"><strong>Password: &nbsp;</strong></label>                    
+                <input type="password" placeholder='Enter Password' name='password' style={{maxWidth: '100%'}} onChange={handleInput} className='rounded-0'/>                    
+                <br/>
+                {errors.password && <span className='text-danger'> {errors.password}</span>}                
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                
+              <button type='submit' className='btn bg-primary w-100 rounded-0'> Log in</button>                              
+              <Link to="/signup" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Create Account</Link>            
+            </form>
+          </div>       
         </div>    
       </div> 
     </div> 

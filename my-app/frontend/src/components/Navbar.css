@@ -28,6 +28,7 @@
 }
 
 .navbar-logo {
+  z-index: 1000;
   color: #fff;
   justify-self: start;
   margin-left: 20px;
@@ -44,13 +45,11 @@
 }
 
 .nav-menu {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-gap: 10px;
-  list-style: none;
-  text-align: center;
+  display: flex;
+  flex: 1;
   width: 60vw;
-  justify-content: end;
+  justify-content: flex-end;
+  align-items: center;
   margin-right: 2rem;
 }
 
@@ -124,8 +123,10 @@
 
   .navbar-logo {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10px;
+    margin-left: -150px;
+    float: left;
+    height: 25px;
     transform: translate(25%, 50%);
   }
 
@@ -137,6 +138,10 @@
     transform: translate(-100%, 60%);
     font-size: 1.8rem;
     cursor: pointer;
+  }
+
+  .logout-button {
+    margin-right: 10px;
   }
 
   .fa-times {

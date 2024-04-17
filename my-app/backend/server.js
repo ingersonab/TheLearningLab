@@ -39,6 +39,14 @@ app.get('/teacherhome', (req, res)=>{
     }
 })
 
+app.get('/coursehome', (req, res)=>{
+    if(req.session.name){
+        return res.json({valid: true, name: req.session.name})
+    }else{
+        return res.json({valid: false})
+    }
+})
+
 app.get('/studenthome', (req, res)=>{
     if(req.session.name){
         return res.json({valid: true, name: req.session.name})
@@ -90,7 +98,6 @@ app.post('/signup', (req, res) => {
             }else{
             return  res.status(400).json({error: "Invalid user type"});
             }
-            return res.json({ message: "Account created successfully" });
         });
     } catch(error){
         console.error("Error processing signup: ", error);
@@ -101,7 +108,7 @@ app.post('/signup', (req, res) => {
 const bcrypt = require('bcryptjs');
 
 app.post('/login', (req, res) => {
-    const sql = "SELECT name, email, password, userType FROM login WHERE `email` = ?";
+    const sql = "SELECT id, name, email, password, userType FROM login WHERE `email` = ?";
     console.log("Starting query");
     db.query(sql, [req.body.email], (err, data) =>{
         console.log("Inside query function");
@@ -139,7 +146,7 @@ app.post('/login', (req, res) => {
             console.log(data[0].userType);
             
             if(result){
-                req.session.userId = data[0].email;
+                req.session.userId = data[0].id;
                 req.session.name = data[0].name;
                 console.log(req.session.name);
                 console.log(req.session.userId);
@@ -153,6 +160,79 @@ app.post('/login', (req, res) => {
 
         console.log("After bcrypt.compare");
     })
+})
+
+app.post('/createCourse', (req, res) => {
+    const {name, description, userId} = req.body;
+    const sql = "INSERT INTO course (courseName, courseDescription, teacher_id) VALUES (?, ?, ?)";
+
+    db.query(sql, [name, description, userId], (err, data) => {
+        if(err){
+            console.error("Error creating course: ", err);
+            return res.json({error: 'Database Error'});
+        }
+
+        console.log('Course created!');
+        return res.json({message: 'Course created successfully!'});
+    })
+})
+
+app.get('/usercourses/:userId', (req, res) => {
+    const userId = req.params.userId;
+    const sql = "SELECT course_id, courseName, courseDescription from course WHERE teacher_id = ?";
+    console.log("User ID when fetching courses:", userId);
+    db.query(sql, [userId], (err, data) => {
+        if(err){
+            console.error("Error fetching course data: ", err);
+            return res.json({error: 'Database Error'});
+        }
+
+        console.log("User courses retreived successfully");
+        return res.json({courses: data});
+    })
+})
+
+app.get('/course/:courseId', (req, res) => {
+    const courseId = req.params.courseId;
+    const sql = "SELECT courseName, courseDescription FROM course WHERE course_id = ?";
+
+    db.query(sql, [courseId], (err, data) =>{
+        if(err){
+            console.error("Error fetching course data: ", err);
+            return res.json({error: 'Database Error'});
+        }
+
+        if(data.length === 0){
+            return res.json({error: 'Course does not exist'});
+        }
+        
+        const course = data[0];
+        return res.json({course: course});
+    })
+})
+
+app.get('/studentExists/:email', (req, res) => {
+    const email = req.params.email;
+    const sql = "SELECT student_id, email FROM student WHERE email = ?";
+
+    db.query(sql, [email], (err, data) =>{
+        if(err){
+            console.error("Error fetching student data: ", err);
+            return res.json({error: 'Database Error'});
+        }
+
+        if(data.length === 0){
+            return res.json({error: 'Student does not exist'});
+        }
+
+        const student = data[0];
+        return res.json({student: student});
+
+    })
+})
+
+app.post('/addStudent/:courseId', (req, res) => {
+
 })
 
 app.post('/logout', (req, res) => {
