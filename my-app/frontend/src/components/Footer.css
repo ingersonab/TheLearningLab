@@ -5,9 +5,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100vh;
+  /*margin-bottom: 100vh;
+  margin-top: 100vh;*/
   z-index: 1001;
 
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo > img {
+  margin-right: -15px;
 }
 
 .footer-subscription {
@@ -124,7 +134,10 @@
 }
 
 .social-logo {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
   color: #fff;
+  z-index: 1000;
   justify-self: start;
   margin-left: 20px;
   cursor: pointer;
@@ -136,6 +149,8 @@
 }
 
 .website-rights {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
   color: #fff;
   margin-bottom: 16px;
 }

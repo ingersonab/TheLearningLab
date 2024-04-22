@@ -4,16 +4,14 @@ import { Button } from './Button';
 import { Link } from 'react-router-dom';
 
 function Footer() {
-  const myStyle = {
-    marginTop: "3000px"
-
-  }
+  
   return (
     <div className='footer-container'>
     
       <section className='social-media'>
         <div className='social-media-wrap'>
           <div className='footer-logo'>
+          <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo2.jpg')} alt='logo image' height={80} width={80}></img>
             <Link to='/' className='social-logo'>
               The Learning Lab
             </Link>

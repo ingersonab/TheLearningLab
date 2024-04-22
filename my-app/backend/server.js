@@ -177,7 +177,7 @@ app.post('/createCourse', (req, res) => {
     })
 })
 
-app.get('/usercourses/:userId', (req, res) => {
+app.get('/teachercourses/:userId', (req, res) => {
     const userId = req.params.userId;
     const sql = "SELECT course_id, courseName, courseDescription from course WHERE teacher_id = ?";
     console.log("User ID when fetching courses:", userId);
@@ -187,7 +187,22 @@ app.get('/usercourses/:userId', (req, res) => {
             return res.json({error: 'Database Error'});
         }
 
-        console.log("User courses retreived successfully");
+        console.log("Teacher courses retreived successfully");
+        return res.json({courses: data});
+    })
+})
+
+app.get('/studentcourses/:userId', (req, res) => {
+    const userId = req.params.userId;
+    const sql = "SELECT crs_tkn.course_id, crs_tkn.student_id, crs.courseName FROM course_taken AS crs_tkn JOIN course AS crs ON crs_tkn.course_id = crs.course_id WHERE student_id = ?";
+    console.log("User ID when fetching courses:", userId);
+    db.query(sql, [userId], (err, data) => {
+        if(err){
+            console.error("Error fetching course data: ", err);
+            return res.json({error: 'Database Error'});
+        }
+
+        console.log("Student courses retreived successfully");
         return res.json({courses: data});
     })
 })
@@ -208,6 +223,21 @@ app.get('/course/:courseId', (req, res) => {
         
         const course = data[0];
         return res.json({course: course});
+    })
+})
+
+app.get('/studentData/:courseId', (req, res) => {
+    const courseId = req.params.courseId;
+    const sql = "SELECT crs_tkn.course_id, crs_tkn.student_id, l.name, l.email FROM course_taken AS crs_tkn JOIN login AS l ON crs_tkn.student_id = l.id WHERE course_id = ?"
+
+    db.query(sql, [courseId], (err, data) => {
+        if(err){
+            console.error("Error fetching student data: ", err);
+            return res.json({error: 'Database Error'});
+        }
+
+        console.log("Student data retreived successfully");
+        return res.json({students: data});
     })
 })
 
@@ -232,8 +262,58 @@ app.get('/studentExists/:email', (req, res) => {
 })
 
 app.post('/addStudent/:courseId', (req, res) => {
+    const {courseId} = req.params;
+    const {email, userId} = req.body;
 
-})
+    console.log("Course Id: ", courseId);
+
+    if(!courseId){
+        console.error('Course ID needed');
+        return res.json({error: 'Course ID needed'});
+    }
+
+    if(!email){
+        console.error('Email needed');
+        return res.json({error: 'Email needed'})
+    }
+
+    if(!userId){
+        console.error('User Id needed');
+        return res.json({error: 'User Id needed'});
+    }
+
+    const verifyStudentSql = "SELECT student_id FROM student WHERE email = ?";
+    db.query(verifyStudentSql, [email], (err, data) => {
+            
+        if(err){
+            console.error("Error searching for student");
+            return res.json({error: 'Database Error'});
+        }
+
+        if(data.length === 0){
+             console.error('Student does not exist');
+            return res.json({error: 'Student does not exist'});
+        }
+
+        const studentId = data[0].student_id;
+
+        const sql = "INSERT INTO course_taken (course_id, teacher_id, student_id) VALUES (?, ?, ?)"
+        db.query(sql, [courseId, userId, studentId], (err, result) => {
+            if(err){
+                if (err.code === 'ER_DUP_ENTRY') {
+                    console.error('Duplicate course_taken record detected');
+                    return res.status(400).json({ error: 'Student already enrolled in course' });
+                } else {
+                    console.error('Database query error:', err);
+                    return res.status(500).json({ error: 'Database Error' });
+                }
+            }
+
+            console.log('Student added successfully!');
+            return res.json({message: 'Student added successfully!'})
+        })
+    })
+})      
 
 app.post('/logout', (req, res) => {
     req.session.destroy((err) =>{
@@ -245,6 +325,7 @@ app.post('/logout', (req, res) => {
         res.json({message: 'Logout successful'});
     })
 })
+
 app.listen(8081, ()=>{
     console.log("listening");
 })

@@ -1,5 +1,8 @@
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  position: relative;
+  height: 100%;
 }
 * {
 
@@ -7,6 +10,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'PT Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
 }
 
 .form-container {
@@ -19,18 +27,76 @@ body {
   padding: 50px;
 }
 
+.home-container {
+  height: 100vh;
+}
+
+.course-container {
+  height: 100vh;
+  /*display: flex;
+  flex-direction: column;*/
+  /*min-height: 100vh;*/
+}
+
+.footer {
+  /*position: absolute;
+  bottom: 0;*/
+  width: 100%;
+  margin-top: auto;
+}
+
 .course-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
 }
 
-.course-header-container {
+.content-container {
+  display: flex;
+  flex-wrap: wrap; 
+  overflow-x: hidden;
+  flex: 1;
+}
+
+.left-container {
+  flex: 0 0 auto;
+  width: 325px; 
+  margin-right: 30px;
+}
+
+.right-container {
+  flex: 1;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
+}
+
+@media (max-width: 960px) {
+  .left-container {
+    flex-basis: 100%; 
+  }
+
+  .right-container {
+    flex-basis: 100%;
+  }
+}
+
+.course-header-container {
+  /*font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;*/
   text-align: left;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+  'Lucida Sans', Arial, sans-serif;
   background-color: #53b2d8;
-  margin-top: -30px;
-  padding-left: 20px;
+  margin-top: -20px;
+  margin-bottom: 0;
+  /*padding-bottom: -10px;
+  background-color: #53b2d8;
+  margin-top: -40px;
+  margin-bottom: 0;
+  padding-bottom: -20px;*/
+  padding: 0px 30px;
 }
 
 .student-entry-container {
@@ -48,6 +114,27 @@ body {
   outline-color: gray;
   box-shadow: 10px 10px 5px;
   padding: 50px;
+}
+
+.table-container {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  align-items: center;
+  padding: 20px;
+  padding-bottom: 50px;
+}
+
+tr:nth-child(even) {
+  background-color: #D6EEEE;
+}
+
+table, th, td, tr{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  border: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+  padding: 10px;
 }
 h4 {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
@@ -73,8 +160,10 @@ h4 {
 }
 
 .header-container {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+  'Lucida Sans', Arial, sans-serif;
   background-color: #53b2d8;
-  margin: -40px;
+  margin: -20px;
 }
 
 .login-container {
@@ -82,17 +171,16 @@ h4 {
   'Lucida Sans', Arial, sans-serif;
 }
 
-.home,
+/*.home,
 .courses,
 .announcement,
 .signup,
 .login{
   display: flex;
-  height: 100vh;
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-}
+}*/
 
 .courses {
   background-color: #32cd32;

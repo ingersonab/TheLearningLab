@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Validation from './LoginValidation';
 import bcrypt from 'bcryptjs';
 import '../../App.css';
-
+import Footer from '../Footer';
 
 function Login() {  
     const myStyle = {
@@ -112,30 +112,31 @@ function Login() {
     }
 
   return (   
+
     <div className="login-container">  
       <div className='d-flex justify-content-center align-items-center bg-success vh-100'>        
         <div className='bg-white p-3 rounded w-25' style={myStyle}>
           <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={200} width={200} />            
           <div className='form-container'> 
-            <h2>Login</h2>            
+            <h2 style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}>Login</h2>            
             {backendError ? backendError.map( e => (<p className='text-danger'>{e.msg}</p>)) : <span></span>}            
             <form action="" onSubmit={handleSubmit}>                
               <div className='mb-3'>                    
-                <label htmlFor="email"><strong>Email: &nbsp;</strong></label>
+                <label htmlFor="email" style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}><strong>Email: &nbsp;</strong></label>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    
-                <input type="email" placeholder='Enter Email' name='email' style={{maxWidth: '100%'}} onChange={handleInput} className='rounded-0'/>                    
+                <input type="email" placeholder='Enter Email' name='email' style={{maxWidth: '100%', fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"}} onChange={handleInput} className='rounded-0'/>                    
                 <br/>
-                {errors.email && <span className='text-danger'> {errors.email}</span>}
+                {errors.email && <span className='text-danger' style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}> {errors.email}</span>}
               </div>                
               <div className='mb-3'>                    
-                <label htmlFor="password"><strong>Password: &nbsp;</strong></label>                    
-                <input type="password" placeholder='Enter Password' name='password' style={{maxWidth: '100%'}} onChange={handleInput} className='rounded-0'/>                    
+                <label htmlFor="password" style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}><strong>Password: &nbsp;</strong></label>                    
+                <input type="password" placeholder='Enter Password' name='password' style={{maxWidth: '100%', fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"}} onChange={handleInput} className='rounded-0'/>                    
                 <br/>
-                {errors.password && <span className='text-danger'> {errors.password}</span>}                
+                {errors.password && <span className='text-danger' style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}> {errors.password}</span>}                
               </div>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                
-              <button type='submit' className='btn bg-primary w-100 rounded-0'> Log in</button>                              
-              <Link to="/signup" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Create Account</Link>            
+              <button type='submit' className='btn bg-primary w-100 rounded-0' style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}> Log in</button>                              
+              <Link to="/signup" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none' style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}>Create Account</Link>            
             </form>
           </div>       
         </div>    

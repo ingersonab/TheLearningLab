@@ -7,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import Footer from '../Footer';
 
 function  Homepage() {
     return (
@@ -68,6 +69,7 @@ function  Homepage() {
             <div className="slideshow-container">
                 <Slideshow/>
             </div>
+            <Footer/>
         </div>
     )
 }

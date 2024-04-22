@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../../App.css';
 import '../Cards.css';
 import CardItem from '../CardItem';
+import Footer from '../Footer';
 
 function StudentHome() {
   const [name, setName] = useState('')
@@ -22,6 +23,7 @@ function StudentHome() {
     .catch(err => console.log(err))
   }, [])
   return (
+    <div className='home-container'>
     <div className='cards'>
       <div className='header-container'>
         <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
@@ -35,7 +37,7 @@ function StudentHome() {
             <CardItem
               src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/classroom.jpg')}
               text='My courses'
-              path='/courses'
+              path='/studentcoursehome'
             />
             <CardItem
               src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/bulletinboard.jpeg')}
@@ -52,6 +54,8 @@ function StudentHome() {
           </ul>
         </div>
       </div>
+      <Footer/>
+    </div>
     </div>
   );
 }

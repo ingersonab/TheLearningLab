@@ -4,8 +4,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import RandomColorCardItem from '../RandomColorCardItem';
 import '../Cards.css';
+import Footer from '../Footer';
 
-export default function CourseHome() {
+export default function TeacherCourseHome() {
 
     const [name, setName] = useState('')
     const [courses, setCourses] = useState([]);
@@ -20,7 +21,7 @@ export default function CourseHome() {
             const userId = sessionStorage.getItem('userId');
             console.log("User ID course home frontend: ", userId);
             if(userId){
-                axios.get(`http://localhost:8081/userCourses/${userId}`)
+                axios.get(`http://localhost:8081/teacherCourses/${userId}`)
                 .then(res => {
                     setCourses(res.data.courses);
                 })
@@ -35,12 +36,12 @@ export default function CourseHome() {
 
     return (
         <div className='course_container'>
-            <div className='cards'>
-                <div className='header-container'>
-                    <Link to="/courses" className='btn bg-primary w-100 rounded-0' style={{ position: 'absolute', top: 20, right: 20}}>Create Course</Link>
+            <div className='cards' >
+                <div className='header-container' >
                     <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
                     <h2>{name}'s Courses</h2>
-                    <hr style={{ color: 'gray', backgroundColor: 'gray', height: 1 }} />
+                    <hr style={{ color: 'gray', backgroundColor: 'gray', height: 1, margin: 0}} />
+                    <Link to="/courses" className='btn bg-primary rounded-0' style={{ position: 'absolute', top: '90px', right: '10px'}}>Create Course</Link>
                 </div>
                 <div className='cards__container'>
                     <div className='cards__wrapper'>
@@ -49,13 +50,17 @@ export default function CourseHome() {
                                 <RandomColorCardItem
                                     key={course.course_id}
                                     text={course.courseName}
-                                    path={`/course/${course.course_id}`}
+                                    path={`/teachercourse/${course.course_id}`}
                                 />
                             ))}
                         </ul>
                     </div>
-                </div>    
+                </div>
+                <div className='footer'>
+                    <Footer/>  
+                </div>  
             </div>
+           
         </div>
         
     )

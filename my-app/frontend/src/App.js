@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './App.css'
 import Homepage from './components/pages/Homepage'
 import Login from './components/pages/Login'
@@ -10,15 +10,26 @@ import StudentHome from './components/pages/StudentHome'
 import Courses from './components/pages/Courses'
 import Announcement from './components/pages/Announcement'
 import About from './components/pages/About'
-import CourseHome from './components/pages/CourseHome'
-import CoursePage from './components/pages/CoursePage'
+import TeacherCourseHome from './components/pages/TeacherCourseHome'
+import StudentCourseHome from './components/pages/StudentCourseHome'
+import TeacherCoursePage from './components/pages/TeacherCoursePage'
+import StudentCoursePage from './components/pages/StudentCoursePage'
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {  
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
+ /* const [userType, setUserType] = useState(null);
+
+  useEffect(() => {
+    const userType = sessionStorage.getItem('userType');
+    console.log('User type: ', userType);
+    setUserType(userType);
+  }, [])
+
+  if(!userType){
+    return null;
+  }*/
 
   return (
     <BrowserRouter>  
@@ -32,11 +43,13 @@ function App() {
         <Route path='/courses' element={<Courses />}></Route>
         <Route path='/announcement' element={<Announcement />}></Route> 
         <Route path='/about' element={<About />}></Route>    
-        <Route path='/coursehome' element={<CourseHome />}></Route>  
-        <Route path="/course/:courseId" element={<CoursePage />}></Route>
+        <Route path='/teachercoursehome' element={<TeacherCourseHome />}></Route>
+        <Route path='/studentcoursehome' element={<StudentCourseHome />}></Route>  
+        <Route path='/teachercourse/:courseId' element={<TeacherCoursePage />}> </Route>
+        <Route path='studentcourse/:courseId' element={<StudentCoursePage/>}></Route>
       </Routes> 
-      <Footer/> 
     </BrowserRouter>  
   )
 }
+
 export default App;
