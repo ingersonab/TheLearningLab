@@ -19,7 +19,7 @@ function  Homepage() {
                     <Card sx={{ maxWidth: 400 }}>
                         <CardMedia
                             component="img"
-                            alt="green iguana"
+                            alt="Education image"
                             height="125"
                             image={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/coursePreview.jpeg')}
                         />
@@ -35,7 +35,7 @@ function  Homepage() {
                     <Card sx={{ maxWidth: 400 }}>
                         <CardMedia
                             component="img"
-                            alt="green iguana"
+                            alt="Education image"
                             height="125"
                             image="/static/images/cards/contemplative-reptile.jpg"
                         />
@@ -51,7 +51,7 @@ function  Homepage() {
                     <Card sx={{ maxWidth: 400 }}>
                         <CardMedia
                             component="img"
-                            alt="green iguana"
+                            alt="Education image"
                             height="125"
                             image="/static/images/cards/contemplative-reptile.jpg"
                         />

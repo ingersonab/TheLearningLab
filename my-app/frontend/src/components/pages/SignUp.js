@@ -118,18 +118,18 @@ function Signup() {
             </div>  
             <h4 style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}>Are you a teacher or a student?</h4>
             <div>
-              <label style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}>
-                <input type="radio" name="userType" value="teacher" onChange={handleInput}/>
+              <label>
+                <input type="radio" name="userType" value="teacher" style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }} onChange={handleInput}/>
                 Teacher
               </label>
               <br/>
-              <label style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}>
-                <input type="radio" name="userType" value="student" onChange={handleInput}/>
+              <label>
+                <input type="radio" name="userType" value="student" onChange={handleInput} style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}/>
                 Student
               </label>
             </div>             
             <button type='submit' className='btn bg-primary w-100 rounded-0' style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}> Sign up</button>                
-            <Link to="/login" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none' style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}>Login</Link>            
+            <Link to="/login" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none' style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}>Have an account? Log in</Link>            
         </form>
       </div>       
       </div></div>  

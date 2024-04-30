@@ -1,0 +1,25 @@
+.small-image {
+    width: 150px; /* Set the width of the image to 150 pixels */
+    height: auto; /* Automatically adjust the height to maintain the aspect ratio */
+}
+
+
+main {
+    padding: 20px; /* Add padding to the main content for spacing */
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.divHead {
+  background-color: #53b2d8;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-top: -20px;
+}
+
+.divBody {
+  background-color: rgb(189, 184, 184);
+}

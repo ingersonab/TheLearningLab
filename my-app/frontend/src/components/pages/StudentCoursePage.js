@@ -17,27 +17,27 @@ function StudentCoursePage(){
     const [course, setCourse] = useState(null);
     const [email, setEmail] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-
+    const [gameId, setGameId] = useState(null);
 
     axios.defaults.withCredentials = true;
     useEffect(()=> {
         axios.get('http://localhost:8081/coursehome')
         .then(res => {
-        if(res.data.valid){
-            setName(res.data.name);
-            const userId = sessionStorage.getItem('userId');
-            console.log("User ID course home frontend : ", userId);
-            if(userId){
-                axios.get(`http://localhost:8081/teacherCourses/${userId}`)
-                .then(res => {
-                    setCourses(res.data.courses);
-                    console.log("Courses: ", res.data.courses);
-                })
-                .catch(err => console.log(err));
+            if(res.data.valid){
+                setName(res.data.name);
+                const userId = sessionStorage.getItem('userId');
+                console.log("User ID course home frontend : ", userId);
+                if(userId){
+                    axios.get(`http://localhost:8081/teacherCourses/${userId}`)
+                    .then(res => {
+                        setCourses(res.data.courses);
+                        console.log("Courses: ", res.data.courses);
+                    })
+                    .catch(err => console.log(err));
+                }
+            }else{
+                navigate('/login')
             }
-        }else{
-            navigate('/login')
-        }
         })
         .catch(err => console.log(err))
     }, [])
@@ -47,6 +47,12 @@ function StudentCoursePage(){
         .then(res => {
             console.log("Course data: ", res.data);
             setCourse(res.data.course);
+        })
+        .catch(err => console.log(err));
+
+        axios.get(`http://localhost:8081/getGameId/${courseId}`)
+        .then(res => {
+            setGameId(res.data.gameId)
         })
         .catch(err => console.log(err));
     }, [courseId]); 
@@ -108,6 +114,21 @@ function StudentCoursePage(){
             <div className="right-container">
                 <h3>Games</h3>
                 <hr style={{ color: 'gray', backgroundColor: 'gray', height: 1 }} />
+                {courseId === '4' && (
+                    
+                    <div className='cards__container' style={{textAlign: 'center'}}>
+                        <div className='cards__wrapper'>
+                            <ul className='cards__items'>
+                                <CardItem
+                                    src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/triviapic2.jpg')}
+                                    text='Arithmetic Practice 1'
+                                    path={`/triviagame/${gameId}`}
+                                />
+                            </ul>
+                        </div>
+                    </div>
+                    
+                )}
             </div>
         </div>
         <Footer/>

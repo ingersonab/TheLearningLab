@@ -9,27 +9,18 @@ import TeacherHome from './components/pages/TeacherHome'
 import StudentHome from './components/pages/StudentHome'
 import Courses from './components/pages/Courses'
 import Announcement from './components/pages/Announcement'
+import Profile from './components/pages/Profile'
 import About from './components/pages/About'
 import TeacherCourseHome from './components/pages/TeacherCourseHome'
 import StudentCourseHome from './components/pages/StudentCourseHome'
 import TeacherCoursePage from './components/pages/TeacherCoursePage'
 import StudentCoursePage from './components/pages/StudentCoursePage'
+import Game from './components/pages/Game'
+import Scoreboard from './components/pages/Scoreboard'
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {  
-
- /* const [userType, setUserType] = useState(null);
-
-  useEffect(() => {
-    const userType = sessionStorage.getItem('userType');
-    console.log('User type: ', userType);
-    setUserType(userType);
-  }, [])
-
-  if(!userType){
-    return null;
-  }*/
 
   return (
     <BrowserRouter>  
@@ -42,11 +33,14 @@ function App() {
         <Route path='/studenthome' element={<StudentHome />}></Route>
         <Route path='/courses' element={<Courses />}></Route>
         <Route path='/announcement' element={<Announcement />}></Route> 
+        <Route path='/profile' element={<Profile />}></Route> 
         <Route path='/about' element={<About />}></Route>    
         <Route path='/teachercoursehome' element={<TeacherCourseHome />}></Route>
         <Route path='/studentcoursehome' element={<StudentCourseHome />}></Route>  
         <Route path='/teachercourse/:courseId' element={<TeacherCoursePage />}> </Route>
         <Route path='studentcourse/:courseId' element={<StudentCoursePage/>}></Route>
+        <Route path='/triviagame/:gameId' element={<Game/>}></Route>
+        <Route path='/scoreboard' element={<Scoreboard/>}></Route>
       </Routes> 
     </BrowserRouter>  
   )
