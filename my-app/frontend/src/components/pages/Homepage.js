@@ -16,7 +16,7 @@ function  Homepage() {
             <div className="cards_and_header_container">
                 <h2>Add competition in the classroom using our gaming features!</h2>
                 <div className="card_container">
-                    <Card sx={{ maxWidth: 400 }}>
+                    <Card sx={{ maxWidth: 400 }} style={{border: '1px solid gray'}}>
                         <CardMedia
                             component="img"
                             alt="Education image"
@@ -32,12 +32,12 @@ function  Homepage() {
                             </Typography>
                         </CardContent>
                     </Card>
-                    <Card sx={{ maxWidth: 400 }}>
+                    <Card sx={{ maxWidth: 400 }} style={{border: '1px solid gray'}}>
                         <CardMedia
                             component="img"
                             alt="Education image"
                             height="125"
-                            image="/static/images/cards/contemplative-reptile.jpg"
+                            image={require("/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/gameScreenshot.jpeg")}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h4" component="div">
@@ -48,12 +48,12 @@ function  Homepage() {
                             </Typography>
                         </CardContent>
                     </Card>
-                    <Card sx={{ maxWidth: 400 }}>
+                    <Card sx={{ maxWidth: 400 }} style={{border: '1px solid gray'}}>
                         <CardMedia
                             component="img"
                             alt="Education image"
                             height="125"
-                            image="/static/images/cards/contemplative-reptile.jpg"
+                            image={require("/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/scoreboardScreenshot.jpeg")}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h4" component="div">

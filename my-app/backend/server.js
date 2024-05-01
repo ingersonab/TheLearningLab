@@ -25,6 +25,7 @@ app.use(session({
     } //set session cookie properties
 }))
 
+//initialize SQL connection
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -32,6 +33,7 @@ const db = mysql.createConnection({
     database: "Login"
 })
 
+//server endpoints for redirects
 app.get('/teacherhome', (req, res)=>{
     if(req.session.name){
         return res.json({valid: true, name: req.session.name})
@@ -56,6 +58,7 @@ app.get('/studenthome', (req, res)=>{
     }
 })
 
+//server endpoint for inserting new user into DB
 app.post('/signup', (req, res) => {
     console.log("Received signup request:",req.body);
     const {name, email, password, userType} = req.body;
@@ -108,6 +111,7 @@ app.post('/signup', (req, res) => {
 
 const bcrypt = require('bcryptjs');
 
+//server endpoint for logging in the user
 app.post('/login', (req, res) => {
     const sql = "SELECT id, name, email, password, userType FROM login WHERE `email` = ?";
     console.log("Starting query");
@@ -163,6 +167,7 @@ app.post('/login', (req, res) => {
     })
 })
 
+//server endpoint for creating course 
 app.post('/createCourse', (req, res) => {
     const {name, description, userId} = req.body;
     const sql = "INSERT INTO course (courseName, courseDescription, teacher_id) VALUES (?, ?, ?)";
@@ -193,6 +198,7 @@ app.get('/teachercourses/:userId', (req, res) => {
     })
 })
 
+//server endpoint for fetching courses that student is enrolled in
 app.get('/studentcourses/:userId', (req, res) => {
     const userId = req.params.userId;
     const sql = "SELECT crs_tkn.course_id, crs_tkn.student_id, crs.courseName FROM course_taken AS crs_tkn JOIN course AS crs ON crs_tkn.course_id = crs.course_id WHERE student_id = ?";
@@ -208,6 +214,7 @@ app.get('/studentcourses/:userId', (req, res) => {
     })
 })
 
+//server endpoint for displaying course information on course pages
 app.get('/course/:courseId', (req, res) => {
     const courseId = req.params.courseId;
     const sql = "SELECT courseName, courseDescription FROM course WHERE course_id = ?";
@@ -227,6 +234,7 @@ app.get('/course/:courseId', (req, res) => {
     })
 })
 
+//server endpoint for fetching student data for student enrollement table on course pages
 app.get('/studentData/:courseId', (req, res) => {
     const courseId = req.params.courseId;
     const sql = "SELECT crs_tkn.course_id, crs_tkn.student_id, l.name, l.email FROM course_taken AS crs_tkn JOIN login AS l ON crs_tkn.student_id = l.id WHERE course_id = ?"
@@ -242,6 +250,7 @@ app.get('/studentData/:courseId', (req, res) => {
     })
 })
 
+//server endpoint for checking if a student exists before adding them to a course
 app.get('/studentExists/:email', (req, res) => {
     const email = req.params.email;
     const sql = "SELECT student_id, email FROM student WHERE email = ?";
@@ -262,6 +271,7 @@ app.get('/studentExists/:email', (req, res) => {
     })
 })
 
+//server endpoint for adding student to a course after teacher submits the form on their course page
 app.post('/addStudent/:courseId', (req, res) => {
     const {courseId} = req.params;
     const {email, userId} = req.body;
@@ -316,6 +326,7 @@ app.post('/addStudent/:courseId', (req, res) => {
     })
 }) 
 
+//server endpoint for retrieving the game Id for game within a course
 app.get('/getGameId/:courseId', (req, res) => {
     const courseId = req.params.courseId;
     const sql = "SELECT game_id FROM game_course WHERE course_id = ?";
@@ -335,6 +346,7 @@ app.get('/getGameId/:courseId', (req, res) => {
     })
 })
 
+//server endpoint for adding the score generated within the unity game to a temporary table in the DB after game completion
 app.post('/updateScore', (req, res) => {
     const {score} = req.body;
 
@@ -352,6 +364,7 @@ app.post('/updateScore', (req, res) => {
     })
 })
 
+//server endpoint for retrieving the score from the temporary table
 app.get('/getScore', (req, res) => {
     const sql = "SELECT score FROM temp";
     
@@ -369,6 +382,9 @@ app.get('/getScore', (req, res) => {
     
 })
 
+/*server endpoint for adding the student id, game id, and the score data to the game_student table after student completes the game and 
+clicks the 'Exit' button on top of the game window. If the game record already exists for the student, the high score in the table will be
+updated if the new score is higher than the existing score. After the data has been inserted/updated, the score is cleared from the temp table. */
 app.post('/addGameData', (req, res) => {
     const {gameId, studentId, score} = req.body;
 
@@ -415,6 +431,7 @@ app.post('/addGameData', (req, res) => {
     })
 })
 
+//server endpoint for generating scoreboards for courses that teacher that contain games 
 app.get('/scoreboardlist/:userId', (req, res) => {
     const userId = req.params.userId;
     const sql = "SELECT c.course_id, c.courseName, c.teacher_id, gc.game_id FROM course AS c JOIN game_course AS gc ON c.course_id = gc.course_id WHERE c.teacher_id = ?";
@@ -444,6 +461,8 @@ app.get('/getscoreboarddata/:courseId', (req, res) => {
     })
 })
 
+/*server endpoint for logging out the user. HTTP request sent when the user clicks 'LOG OUT' button on the navbar. Session is destroyed
+and cookie is cleared*/
 app.post('/logout', (req, res) => {
     req.session.destroy((err) =>{
         if(err){
