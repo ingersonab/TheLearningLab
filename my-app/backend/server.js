@@ -11,6 +11,7 @@ app.use(cors({
     methods: ["POST", "GET"],
     credentials: true
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -24,6 +25,7 @@ app.use(session({
     } //set session cookie properties
 }))
 
+//initialize SQL connection
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -31,6 +33,7 @@ const db = mysql.createConnection({
     database: "Login"
 })
 
+//server endpoints for redirects
 app.get('/teacherhome', (req, res)=>{
     if(req.session.name){
         return res.json({valid: true, name: req.session.name})
@@ -55,6 +58,7 @@ app.get('/studenthome', (req, res)=>{
     }
 })
 
+//server endpoint for inserting new user into DB
 app.post('/signup', (req, res) => {
     console.log("Received signup request:",req.body);
     const {name, email, password, userType} = req.body;
@@ -107,6 +111,7 @@ app.post('/signup', (req, res) => {
 
 const bcrypt = require('bcryptjs');
 
+//server endpoint for logging in the user
 app.post('/login', (req, res) => {
     const sql = "SELECT id, name, email, password, userType FROM login WHERE `email` = ?";
     console.log("Starting query");
@@ -162,6 +167,7 @@ app.post('/login', (req, res) => {
     })
 })
 
+//server endpoint for creating course 
 app.post('/createCourse', (req, res) => {
     const {name, description, userId} = req.body;
     const sql = "INSERT INTO course (courseName, courseDescription, teacher_id) VALUES (?, ?, ?)";
@@ -177,6 +183,7 @@ app.post('/createCourse', (req, res) => {
     })
 })
 
+//server endpoint for displaying courses to the teacher on the course homepage
 app.get('/teachercourses/:userId', (req, res) => {
     const userId = req.params.userId;
     const sql = "SELECT course_id, courseName, courseDescription from course WHERE teacher_id = ?";
@@ -192,6 +199,7 @@ app.get('/teachercourses/:userId', (req, res) => {
     })
 })
 
+//server endpoint for fetching courses that student is enrolled in
 app.get('/studentcourses/:userId', (req, res) => {
     const userId = req.params.userId;
     const sql = "SELECT crs_tkn.course_id, crs_tkn.student_id, crs.courseName FROM course_taken AS crs_tkn JOIN course AS crs ON crs_tkn.course_id = crs.course_id WHERE student_id = ?";
@@ -207,6 +215,7 @@ app.get('/studentcourses/:userId', (req, res) => {
     })
 })
 
+//server endpoint for displaying course information on course pages
 app.get('/course/:courseId', (req, res) => {
     const courseId = req.params.courseId;
     const sql = "SELECT courseName, courseDescription FROM course WHERE course_id = ?";
@@ -226,6 +235,7 @@ app.get('/course/:courseId', (req, res) => {
     })
 })
 
+//server endpoint for fetching student data for student enrollement table on course pages
 app.get('/studentData/:courseId', (req, res) => {
     const courseId = req.params.courseId;
     const sql = "SELECT crs_tkn.course_id, crs_tkn.student_id, l.name, l.email FROM course_taken AS crs_tkn JOIN login AS l ON crs_tkn.student_id = l.id WHERE course_id = ?"
@@ -241,6 +251,7 @@ app.get('/studentData/:courseId', (req, res) => {
     })
 })
 
+//server endpoint for checking if a student exists before adding them to a course
 app.get('/studentExists/:email', (req, res) => {
     const email = req.params.email;
     const sql = "SELECT student_id, email FROM student WHERE email = ?";
@@ -261,6 +272,7 @@ app.get('/studentExists/:email', (req, res) => {
     })
 })
 
+//server endpoint for adding student to a course after teacher submits the form on their course page
 app.post('/addStudent/:courseId', (req, res) => {
     const {courseId} = req.params;
     const {email, userId} = req.body;
@@ -313,8 +325,145 @@ app.post('/addStudent/:courseId', (req, res) => {
             return res.json({message: 'Student added successfully!'})
         })
     })
-})      
+}) 
 
+//server endpoint for retrieving the game Id for game within a course
+app.get('/getGameId/:courseId', (req, res) => {
+    const courseId = req.params.courseId;
+    const sql = "SELECT game_id FROM game_course WHERE course_id = ?";
+
+    db.query(sql, [courseId], (err, data) => {
+        if(err){
+            console.error("Error retrieving game ID: ", err);
+            return res.json({error: 'Database Error'});
+        }
+
+        if(data.length === 0){
+            return res.json({error: 'No game found'});
+        }
+
+        const gameId = data[0].game_id;
+        return res.json({gameId: gameId});
+    })
+})
+
+//server endpoint for adding the score generated within the unity game to a temporary table in the DB after game completion
+app.post('/updateScore', (req, res) => {
+    const {score} = req.body;
+
+    console.log('Score from Unity:', score);
+
+    const sql = "INSERT INTO temp (score) VALUES (?)";
+    db.query(sql, [score], (err, result) => {
+        if(err){
+            console.error('Error adding score:', err);
+            return res.json({error: 'DB Error'});
+        }
+
+        console.log('Score added successfully!');
+        return res.json({message: 'Score received!'});
+    })
+})
+
+//server endpoint for retrieving the score from the temporary table
+app.get('/getScore', (req, res) => {
+    const sql = "SELECT score FROM temp";
+    
+    db.query(sql, (err, data) => {
+        if(err){
+            console.error('Error retrieving score:', err);
+            return res.json({error: 'DB Error'});
+        }
+
+        const score = data[0].score;
+        console.log('retrieved score: ', score);
+        return res.json({score: score});
+
+    })
+    
+})
+
+/*server endpoint for adding the student id, game id, and the score data to the game_student table after student completes the game and 
+clicks the 'Exit' button on top of the game window. If the game record already exists for the student, the high score in the table will be
+updated if the new score is higher than the existing score. After the data has been inserted/updated, the score is cleared from the temp table. */
+app.post('/addGameData', (req, res) => {
+    const {gameId, studentId, score} = req.body;
+
+    const checkRecordSql = "SELECT * FROM game_student WHERE game_id = ? AND student_id = ?";
+    db.query(checkRecordSql, [gameId, studentId], (checkError, checkResult) => {
+        if(checkError){
+            console.error('Error while checking record:', checkError);
+            return res.json({error: 'DB Error'});
+        }
+        if(checkResult.length > 0){
+            const tableScore = checkResult[0].score;
+            if(score > tableScore){
+                const updateSql = "UPDATE game_student SET score = ? WHERE game_id = ? AND student_id = ?";
+                db.query(updateSql, [score, gameId, studentId], (updateError, updateResult) => {
+                    if(updateError){
+                        console.error('Error updating score: ', updateError);
+                        return res.json({error: 'DB Error'})
+                    }
+                    console.log("Score updated!");
+                    return res.json({ message: 'Score updated!' });
+                })
+            }else {
+                console.log("Score is not higher, update not needed");
+                return res.json({message: 'Score Received!'});
+            }
+        } else {
+            const sql =  "INSERT INTO game_student (game_id, student_id, score) VALUES (?, ?, ?)";
+            db.query(sql, [gameId, studentId, score], (err, result) => {
+                if(err){
+                console.error('Error adding game data:', err);
+                return res.json({error: 'An unexpected error occurred'});
+                }
+                console.log('Game data added!');
+                return res.json({message: 'Game data added'});
+            })
+        }
+    })
+    const clearTempSql = "DELETE FROM temp";
+    db.query(clearTempSql, (clearError, clearResult) => {
+        if(clearError){
+            console.error('Error clearing temporary table: ', clearError);
+        }
+        console.log("Temp table cleared!");
+    })
+})
+
+//server endpoint for generating scoreboards for courses that teacher that contain games 
+app.get('/scoreboardlist/:userId', (req, res) => {
+    const userId = req.params.userId;
+    const sql = "SELECT c.course_id, c.courseName, c.teacher_id, gc.game_id FROM course AS c JOIN game_course AS gc ON c.course_id = gc.course_id WHERE c.teacher_id = ?";
+
+    db.query(sql, [userId], (err, data) => {
+        if(err){
+            console.error('Error pulling up courses: ', err);
+            return res.json({error: 'DB Error'})
+        }
+
+        const courseId = data[0].course_id;
+        return res.json({result: data, courseId: courseId});
+    })
+})
+
+app.get('/getscoreboarddata/:courseId', (req, res) => {
+    const courseId = req.params.courseId;
+    const sql = "SELECT l.name, gs.student_id, gs.score FROM login AS l JOIN game_student AS gs ON l.id = gs.student_id JOIN game_course AS gc ON gs.game_id = gc.game_id WHERE gc.course_id = ? ORDER BY gs.score DESC"
+    db.query(sql, [courseId], (err, data) => {
+        if(err){
+            console.error("Error fetching game data: ", err);
+            return res.json({error: 'Database Error'});
+        }
+
+        console.log("Game data retreived successfully");
+        return res.json({gameData: data});
+    })
+})
+
+/*server endpoint for logging out the user. HTTP request sent when the user clicks 'LOG OUT' button on the navbar. Session is destroyed
+and cookie is cleared*/
 app.post('/logout', (req, res) => {
     req.session.destroy((err) =>{
         if(err){

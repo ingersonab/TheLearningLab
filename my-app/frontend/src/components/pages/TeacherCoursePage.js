@@ -143,7 +143,7 @@ function TeacherCoursePage(){
                 <div className="student-entry-container ">
                     <div className='mb-3'>                    
                         <h4 style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}>Add student to Course</h4>                    
-                        <input type="email" placeholder='Enter Student Email' name='email' style={{maxWidth: '100%', float: 'right', fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"}} className='rounded-0' value={email} onChange={handleInput}/>                    
+                        <input type="email" placeholder='Enter Student Email' name='email' style={{alignItems: 'center', maxWidth: '100%', float: 'center', fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"}} className='rounded-0' value={email} onChange={handleInput}/>                    
                         <br/>
                         {errorMessage && <span className='text-danger' style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}> {errorMessage}</span>}
                         <br/>

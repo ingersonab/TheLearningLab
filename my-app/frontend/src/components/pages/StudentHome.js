@@ -49,7 +49,7 @@ function StudentHome() {
               src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/profilepic.png')}
               text='My Profile'
               
-              path='/signup'
+              path='/profile'
             />
           </ul>
         </div>

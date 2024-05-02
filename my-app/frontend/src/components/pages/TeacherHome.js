@@ -48,7 +48,7 @@ function TeacherHome() {
               <CardItem
                 src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/scoreboard.jpeg')}
                 text='View Scoreboard'
-                path='/signup'
+                path='/scoreboard'
               />
             </ul>
           </div>

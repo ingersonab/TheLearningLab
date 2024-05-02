@@ -20,7 +20,8 @@
     "react-dom": "^18.2.0",
     "react-password-checklist": "^1.5.1",
     "react-router-dom": "^6.22.1",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "react-unity-webgl": "^9.5.1"
   },
   "scripts": {
     "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",

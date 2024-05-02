@@ -61,6 +61,21 @@ function Navbar() {
       window.removeEventListener('resize', showButton);
     };
   }, [isAuthenticated]);*/
+  /*
+  <li className='nav-item'>
+              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                Courses
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/services'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Students
+              </Link>
+            </li>*/
 
   return (
     <>
@@ -74,20 +89,7 @@ function Navbar() {
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-            <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                Courses
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link
-                to='/services'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Students
-              </Link>
-            </li>
+            
             <li className='nav-item'>
               <Link
                 to='/about'
