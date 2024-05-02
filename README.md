@@ -19,7 +19,7 @@ w3schools
 https://react-unity-webgl.dev/  
 https://youtu.be/I2UBjN5ER4s?si=rNgKQ0VJLfkipuuj  
 https://youtu.be/b4H9EOKc910?si=c-yVRu5Lz5lCtg3X  
-https://youtu.be/F53MPHqOmYI?si=wb9MGPclhJs-gvzh 
+https://youtu.be/F53MPHqOmYI?si=ULpxhJ9HIOYewbTt
 https://www.dhiwise.com/post/exploring-the-power-of-react-webgl-for-web-experiences  
 ChatGPT (for debugging/troubleshooting tips)  
 
