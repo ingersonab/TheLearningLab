@@ -9,6 +9,7 @@ A learning website with gamified lessons to help students engage better when lea
 Frontend: ReactJS  
 Styling: plain CSS, Bootstrap css  
 Backend: Node.js, Express  
+Database: phpMyAdmin, MySQL  
 Game Engine: Unity Web GL  
 
 ## Resources used 
