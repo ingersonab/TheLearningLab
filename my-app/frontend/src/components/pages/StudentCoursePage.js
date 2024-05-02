@@ -124,9 +124,15 @@ function StudentCoursePage(){
                                     text='Arithmetic Practice 1'
                                     path={`/triviagame/${gameId}`}
                                 />
+                                <CardItem
+                                    src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/cardGamePreview.jpg')}
+                                    text='Arithmetic Practice 2'
+                                    path= '/cardgame'
+                                />
                             </ul>
                         </div>
                     </div>
+                    
                     
                 )}
             </div>

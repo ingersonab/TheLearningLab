@@ -16,6 +16,7 @@ import StudentCourseHome from './components/pages/StudentCourseHome'
 import TeacherCoursePage from './components/pages/TeacherCoursePage'
 import StudentCoursePage from './components/pages/StudentCoursePage'
 import Game from './components/pages/Game'
+import CardGame from './components/pages/CardGame'
 import Scoreboard from './components/pages/Scoreboard'
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -40,6 +41,7 @@ function App() {
         <Route path='/teachercourse/:courseId' element={<TeacherCoursePage />}> </Route>
         <Route path='studentcourse/:courseId' element={<StudentCoursePage/>}></Route>
         <Route path='/triviagame/:gameId' element={<Game/>}></Route>
+        <Route path='/cardgame' element={<CardGame/>}></Route>
         <Route path='/scoreboard' element={<Scoreboard/>}></Route>
       </Routes> 
     </BrowserRouter>  

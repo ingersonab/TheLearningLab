@@ -183,6 +183,7 @@ app.post('/createCourse', (req, res) => {
     })
 })
 
+//server endpoint for displaying courses to the teacher on the course homepage
 app.get('/teachercourses/:userId', (req, res) => {
     const userId = req.params.userId;
     const sql = "SELECT course_id, courseName, courseDescription from course WHERE teacher_id = ?";
