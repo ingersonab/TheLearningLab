@@ -32,7 +32,7 @@ Card Game: https://github.com/barbazaam/CardGameProject
 1. clone the repository and upload the project to Visual Studio Code. Here is a tutorial: https://itsfoss.com/vs-code-github/    
 2. Using XAMPP 8.2.4, start up the MySQL Database and Apache Web Server  
 3. On the XAMPP localhost dashboard, go to phpMyAdmin. Create a new database called 'Login'  
-4. Click on the SQL tab, copy the code from TheLearningLabDB.sql (path: my-app/backend/MySQLDB and paste into the query area. Click 'Go' to run the query. Now the database is set up!  
+4. Click on the SQL tab, copy the code from TheLearningLabDB.sql (path: my-app/backend/MySQLDB) and paste into the query area. Click 'Go' to run the query. Now the database is set up!  
 5. In VS Code, open two terminal windows. In the first window, navigate to the frontend directory and in the second window navigate to the backend directory.  
 6. To start up the client and server, enter the command 'npm start' in both terminals. Make sure that you have npm installed before using.  
 7. Congrats! Now you can start gaming ;)  
