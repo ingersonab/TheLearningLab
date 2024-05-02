@@ -7,7 +7,7 @@ A learning website with gamified lessons to help students engage better when lea
 ## Tech Stack 
 
 Frontend: ReactJS  
-Styling: plan CSS, Bootstrap css  
+Styling: plain CSS, Bootstrap css  
 Backend: Node.js, Express  
 Game Engine: Unity Web GL  
 
