@@ -28,6 +28,8 @@ ChatGPT (for debugging/troubleshooting tips)
 Trivia Game: https://github.com/barbazaam/QuizGameProject  
 Card Game: https://github.com/barbazaam/CardGameProject  
 
+The making of the games would be impossible without Youtube, other Github Repositories, reddit, and Stack Overflow!
+
 ## How to run the website locally
 
 1. clone the repository and upload the project to Visual Studio Code. Here is a tutorial: https://itsfoss.com/vs-code-github/    
