@@ -5,6 +5,7 @@ import '../../App.css';
 import '../Cards.css';
 import CardItem from '../CardItem';
 import Footer from '../Footer';
+import RandomColorCardItem from '../RandomColorCardItem';
 
 function TeacherHome() {
   const [name, setName] = useState('')
@@ -35,17 +36,17 @@ function TeacherHome() {
           <div className='cards__wrapper'>
           
             <ul className='cards__items'>
-              <CardItem
+              <RandomColorCardItem
                 src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/classroom.jpg')}
                 text='My Courses'
                 path='/teachercoursehome'
               />
-              <CardItem
+              <RandomColorCardItem
                 src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/megaphone.jpeg')}
                 text='Send Announcement'
                 path='/announcement'
               />
-              <CardItem
+              <RandomColorCardItem
                 src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/scoreboard.jpeg')}
                 text='View Scoreboard'
                 path='/scoreboard'
