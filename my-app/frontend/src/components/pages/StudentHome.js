@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../../App.css';
 import '../Cards.css';
 import CardItem from '../CardItem';
+import RandomColorCardItem from '../RandomColorCardItem';
 import Footer from '../Footer';
 
 function StudentHome() {
@@ -34,18 +35,18 @@ function StudentHome() {
         <div className='cards__wrapper'>
           
           <ul className='cards__items'>
-            <CardItem
+            <RandomColorCardItem
               src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/classroom.jpg')}
               text='My courses'
               path='/studentcoursehome'
             />
-            <CardItem
+            <RandomColorCardItem
               src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/bulletinboard.jpeg')}
               text='Notifications'
               
               path='/announcement'
             />
-            <CardItem
+            <RandomColorCardItem
               src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/profilepic.png')}
               text='My Profile'
               

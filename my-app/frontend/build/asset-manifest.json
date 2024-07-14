@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bb89e1a3.css",
+    "main.js": "/static/js/main.88e2e51a.js",
+    "static/media/kimberly-farmer-lUaaKCUANVI-unsplash.jpg": "/static/media/kimberly-farmer-lUaaKCUANVI-unsplash.d5ce325e9ba9fec0acd6.jpg",
+    "static/media/cardGamePreview.jpg": "/static/media/cardGamePreview.2320e5db1d5a91367791.jpg",
+    "static/media/gameScreenshot.jpeg": "/static/media/gameScreenshot.403d503b71cbccd0309a.jpeg",
+    "static/media/coursePreview.jpeg": "/static/media/coursePreview.eaad6e1161eccd2fa206.jpeg",
+    "static/media/glyphicons-halflings-regular.svg": "/static/media/glyphicons-halflings-regular.060b2710bdbbe3dfe48b.svg",
+    "static/media/scoreboardScreenshot.jpeg": "/static/media/scoreboardScreenshot.93efc5cdad236ef6081f.jpeg",
+    "static/media/logo2.jpg": "/static/media/logo2.9376c7dbdb0a3f59fe11.jpg",
+    "static/media/logo.jpeg": "/static/media/logo.0bdb39f3bcb3df291f2c.jpeg",
+    "static/media/glyphicons-halflings-regular.ttf": "/static/media/glyphicons-halflings-regular.4692b9ec53fd5972caa2.ttf",
+    "static/media/triviapic2.jpg": "/static/media/triviapic2.ba860422fb34f7634cf8.jpg",
+    "static/media/bloxorzpic..jpg": "/static/media/bloxorzpic..7902e377023ebab35037.jpg",
+    "static/media/glyphicons-halflings-regular.woff": "/static/media/glyphicons-halflings-regular.82b1212e45a2bc35dd73.woff",
+    "static/media/scoreboard.jpeg": "/static/media/scoreboard.780de6baf881cc7aa300.jpeg",
+    "static/media/bulletinboard.jpeg": "/static/media/bulletinboard.3ed3f6aeb273f9f83f52.jpeg",
+    "static/media/glyphicons-halflings-regular.eot": "/static/media/glyphicons-halflings-regular.5be1347c682810f199c7.eot",
+    "static/media/megaphone.jpeg": "/static/media/megaphone.642d31d6b48b9f06476d.jpeg",
+    "static/media/glyphicons-halflings-regular.woff2": "/static/media/glyphicons-halflings-regular.be810be3a3e14c682a25.woff2",
+    "static/media/classroom.jpg": "/static/media/classroom.e4c52d9ea94c11e09e3b.jpg",
+    "static/media/flappybirdpic.jpg": "/static/media/flappybirdpic.a4c29b2b60aeae84d0b0.jpg",
+    "index.html": "/index.html",
+    "main.bb89e1a3.css.map": "/static/css/main.bb89e1a3.css.map",
+    "main.88e2e51a.js.map": "/static/js/main.88e2e51a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bb89e1a3.css",
+    "static/js/main.88e2e51a.js"
+  ]
+}
