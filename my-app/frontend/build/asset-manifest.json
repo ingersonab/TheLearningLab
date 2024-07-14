@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.bb89e1a3.css",
-    "main.js": "/static/js/main.88e2e51a.js",
+    "main.js": "/static/js/main.d6a48532.js",
     "static/media/kimberly-farmer-lUaaKCUANVI-unsplash.jpg": "/static/media/kimberly-farmer-lUaaKCUANVI-unsplash.d5ce325e9ba9fec0acd6.jpg",
     "static/media/cardGamePreview.jpg": "/static/media/cardGamePreview.2320e5db1d5a91367791.jpg",
     "static/media/gameScreenshot.jpeg": "/static/media/gameScreenshot.403d503b71cbccd0309a.jpeg",
@@ -23,10 +23,10 @@
     "static/media/flappybirdpic.jpg": "/static/media/flappybirdpic.a4c29b2b60aeae84d0b0.jpg",
     "index.html": "/index.html",
     "main.bb89e1a3.css.map": "/static/css/main.bb89e1a3.css.map",
-    "main.88e2e51a.js.map": "/static/js/main.88e2e51a.js.map"
+    "main.d6a48532.js.map": "/static/js/main.d6a48532.js.map"
   },
   "entrypoints": [
     "static/css/main.bb89e1a3.css",
-    "static/js/main.88e2e51a.js"
+    "static/js/main.d6a48532.js"
   ]
 }
