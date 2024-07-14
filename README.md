@@ -7,7 +7,7 @@ A learning website with gamified lessons to help students engage better when lea
 ## Tech Stack 
 
 Frontend: ReactJS  
-Styling: plan CSS, Bootstrap css  
+Styling: plain CSS, Bootstrap css  
 Backend: Node.js, Express  
 Game Engine: Unity Web GL  
 
@@ -37,7 +37,9 @@ Card Game: https://github.com/barbazaam/CardGameProject
 6. To start up the client and server, enter the command 'npm start' in both terminals. Make sure that you have npm installed before using.  
 7. Congrats! Now you can start gaming ;)  
 
-Additional notes: the images used in the app are all using local file paths, so you might need to change those to match your local directory in order to see them.
+ ### Additional notes: 
+ - the images used in the app are all using local file paths, so you might need to change those to match your local directory in order to see them.
+ - If you would like to view the games, log in with the following credentials: Email: aing@yahoo.com Password: Bunny123 and add students to the course called 'Arithmetic.' Log in as one of the added students, open the course, and play the games!
 
 
 
