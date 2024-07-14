@@ -14,7 +14,7 @@ function HeroSection() {
   return (
     <div className='hero-container' style={{backgroundImage: `url(${require('../kimberly-farmer-lUaaKCUANVI-unsplash.jpg')})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
       <div className="logo-container">
-        <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={200} width={200} />
+        <img src={require('../logo.jpeg')} alt='logo image' height={200} width={200} />
       </div>
       <div className="text-container">
         <h1>The Learning Lab</h1>
