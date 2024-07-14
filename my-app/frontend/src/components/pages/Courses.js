@@ -61,7 +61,7 @@ export default function Courses() {
     <div className="course-form-container" style={myStyle}>
       <div className='d-flex justify-content-center align-items-center bg-success vh-100'>        
         <div className='bg-white p-3 rounded w-25' style={myStyle}>
-            <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={200} width={200} />            
+            <img src={require('../../logo.jpeg')} alt='logo image' height={200} width={200} />            
           <div className='form-container'> 
             <h2 style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}>Create Course</h2>                        
             <form action="" onSubmit={handleSubmit}>                

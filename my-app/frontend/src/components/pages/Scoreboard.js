@@ -29,7 +29,7 @@ function Scoreboard() {
         <>
             <div className="scoreboard-container">
                 <div className='header-container' style={{textAlign: 'center'}}>
-                    <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
+                    <img src={require('../../logo.jpeg')} alt='logo image' height={100} width={100} />
                     <h2>Scoreboards</h2>
                     <hr style={{ color: 'gray', backgroundColor: 'gray', height: 1 }} />
                 </div>

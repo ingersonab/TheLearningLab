@@ -82,7 +82,7 @@ function StudentCoursePage(){
     return (
     <div className="course-page-container">
         <div className="course-header-container">
-            <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
+            <img src={require('../../logo.jpeg')} alt='logo image' height={100} width={100} />
             <h1 style={{textAlign: 'left'}}>{course.courseName}</h1>
             <h3>Course Description:</h3>
             <p>{course.courseDescription}</p>
@@ -120,12 +120,12 @@ function StudentCoursePage(){
                         <div className='cards__wrapper'>
                             <ul className='cards__items'>
                                 <CardItem
-                                    src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/triviapic2.jpg')}
+                                    src={require('../../triviapic2.jpg')}
                                     text='Arithmetic Practice 1'
                                     path={`/triviagame/${gameId}`}
                                 />
                                 <CardItem
-                                    src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/cardGamePreview.jpg')}
+                                    src={require('../../cardGamePreview.jpg')}
                                     text='Arithmetic Practice 2'
                                     path= '/cardgame'
                                 />
