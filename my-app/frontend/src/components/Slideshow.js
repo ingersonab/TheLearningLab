@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './Slideshow.css';
 
-const images = [require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/bloxorzpic..jpg'),
-                require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/flappybirdpic.jpg'),
-                require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/triviapic2.jpg')];
+const images = [require('../bloxorzpic..jpg'),
+                require('../flappybirdpic.jpg'),
+                require('../triviapic2.jpg')];
 const delay = 5000;
 
 function Slideshow(){

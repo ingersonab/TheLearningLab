@@ -37,17 +37,14 @@ function TeacherHome() {
           
             <ul className='cards__items'>
               <RandomColorCardItem
-                src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/classroom.jpg')}
                 text='My Courses'
                 path='/teachercoursehome'
               />
               <RandomColorCardItem
-                src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/megaphone.jpeg')}
                 text='Send Announcement'
                 path='/announcement'
               />
               <RandomColorCardItem
-                src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/scoreboard.jpeg')}
                 text='View Scoreboard'
                 path='/scoreboard'
               />

@@ -27,7 +27,7 @@ function StudentHome() {
     <div className='home-container'>
     <div className='cards'>
       <div className='header-container'>
-        <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
+        <img src={require('../../logo.jpeg')} alt='logo image' height={100} width={100} />
         <h2>Welcome Back {name}!</h2>
         <hr style={{ color: 'gray', backgroundColor: 'gray', height: 1 }} />
       </div>
@@ -36,20 +36,15 @@ function StudentHome() {
           
           <ul className='cards__items'>
             <RandomColorCardItem
-              src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/classroom.jpg')}
               text='My courses'
               path='/studentcoursehome'
             />
             <RandomColorCardItem
-              src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/bulletinboard.jpeg')}
               text='Notifications'
-              
               path='/announcement'
             />
             <RandomColorCardItem
-              src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/profilepic.png')}
               text='My Profile'
-              
               path='/profile'
             />
           </ul>

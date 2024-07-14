@@ -82,7 +82,7 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to={isAuthenticated ? (sessionStorage.getItem('userType') === 'student' ? '/studenthome' : '/teacherhome') : '/'} className='navbar-logo' onClick={closeMobileMenu}>
-          <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo2.jpg')} alt='logo image' height={80} width={80} />
+          <img src={require('../logo2.jpg')} alt='logo image' height={80} width={80} />
             The Learning Lab
           </Link>
           <div className='menu-icon' onClick={handleClick}>

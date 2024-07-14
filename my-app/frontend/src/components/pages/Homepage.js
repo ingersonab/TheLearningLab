@@ -21,7 +21,7 @@ function  Homepage() {
                             component="img"
                             alt="Education image"
                             height="125"
-                            image={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/coursePreview.jpeg')}
+                            image={require('../../coursePreview.jpeg')}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h4" component="div">
@@ -37,7 +37,7 @@ function  Homepage() {
                             component="img"
                             alt="Education image"
                             height="125"
-                            image={require("/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/gameScreenshot.jpeg")}
+                            image={require("../../gameScreenshot.jpeg")}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h4" component="div">
@@ -53,7 +53,7 @@ function  Homepage() {
                             component="img"
                             alt="Education image"
                             height="125"
-                            image={require("/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/scoreboardScreenshot.jpeg")}
+                            image={require("../../scoreboardScreenshot.jpeg")}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h4" component="div">

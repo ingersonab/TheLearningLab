@@ -38,7 +38,7 @@ export default function TeacherCourseHome() {
         <div className='course_container'>
             <div className='cards' >
                 <div className='header-container' >
-                    <img src={require('/Users/alyssaingerson/Documents/GitHub/TheLearningLab/my-app/frontend/src/logo.jpeg')} alt='logo image' height={100} width={100} />
+                    <img src={require('../../logo.jpeg')} alt='logo image' height={100} width={100} />
                     <h2>{name}'s Courses</h2>
                     <hr style={{ color: 'gray', backgroundColor: 'gray', height: 1, margin: 0}} />
                     <Link to="/courses" className='btn bg-primary rounded-0' style={{ position: 'absolute', top: '90px', right: '10px'}}>Create Course</Link>
