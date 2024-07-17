@@ -42,7 +42,7 @@ Card Game: https://github.com/barbazaam/CardGameProject
 ** database is already being hosted on AWS RDS
  ### Additional notes: 
  - the images used in the app are all using local file paths, so you might need to change those to match your local directory in order to see them.
- - If you would like to view the games, log in with the following credentials: Email: aing@yahoo.com Password: Bunny123 and add students to the course called 'Arithmetic.' Log in as one of the added students, open the course, and play the games!
+ - If you would like to view the games, log in with the following student credentials: Email: jdoe@hotmail.com Password: Password123 and navigate to the course called 'Arithmetic.' To view the teacher side of the application, login with these credentials: Email: aing@yahoo.com Password: Bunny123
 
 
 
