@@ -11,7 +11,8 @@ function TeacherHome() {
   const [name, setName] = useState('')
   const navigate = useNavigate()
 
-  const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+  //const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+  const API_BASE_URL = 'http://localhost:8081';
 
   axios.defaults.withCredentials = true;
   useEffect(()=> {

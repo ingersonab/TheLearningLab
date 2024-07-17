@@ -6,7 +6,8 @@ function Scoreboard() {
     const [gameData, setGameData] = useState([]);
     const [scoreboardList, setScoreboardList] = useState([]);
 
-    const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+    //const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+    const API_BASE_URL = 'http://localhost:8081'
 
     useEffect(() => {
         axios.defaults.withCredentials = true;

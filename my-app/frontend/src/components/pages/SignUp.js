@@ -22,7 +22,8 @@ function Signup() {
     top: 0
   };
 
-    const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+    //const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+    const API_BASE_URL = 'http://localhost:8081';
 
     const [values, setValues] = useState({        
       name: '',        

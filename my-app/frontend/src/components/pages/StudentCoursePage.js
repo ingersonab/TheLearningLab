@@ -19,7 +19,8 @@ function StudentCoursePage(){
     const [errorMessage, setErrorMessage] = useState("");
     const [gameId, setGameId] = useState(null);
 
-    const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+    //const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+    const API_BASE_URL = 'http://localhost:8081';
 
     axios.defaults.withCredentials = true;
     useEffect(()=> {

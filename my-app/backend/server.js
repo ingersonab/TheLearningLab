@@ -7,11 +7,12 @@ const bodyParser = require('body-parser');
 
 const app = express();
 app.use(cors({
-    origin: ["https://main.ddm5313f6xd84.amplifyapp.com/"],
+    origin: ["http://localhost:3000"],
     methods: ["POST", "GET"],
     credentials: true
 }));
 
+//https://main.ddm5313f6xd84.amplifyapp.com/
 //http://localhost:3000
 
 app.use(express.json());
@@ -29,11 +30,15 @@ app.use(session({
 
 //initialize SQL connection
 const db = mysql.createConnection({
-    host: "thelearninglabdb.c7wi4u660jcs.us",
+    host: "thelearninglabdb.c7wi4u660jcs.us-east-1.rds.amazonaws.com",
     user: "admin",
     password: "Beardog836628297!",
+    port: 3306,
     database: "Login"
 })
+
+//"thelearninglabdb.c7wi4u660jcs.us"
+//Beardog836628297!
 
 //server endpoints for redirects
 app.get('/teacherhome', (req, res)=>{
