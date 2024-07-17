@@ -11,9 +11,11 @@ function TeacherHome() {
   const [name, setName] = useState('')
   const navigate = useNavigate()
 
+  const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+
   axios.defaults.withCredentials = true;
   useEffect(()=> {
-    axios.get('http://localhost:8081/teacherhome')
+    axios.get(`${API_BASE_URL}/teacherhome`)
     .then(res => {
       if(res.data.valid){
         setName(res.data.name);
@@ -24,6 +26,7 @@ function TeacherHome() {
     })
     .catch(err => console.log(err))
   }, [])
+  
   return (
     <div className='home-container'>
       <div className='cards'>

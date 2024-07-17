@@ -11,17 +11,19 @@ export default function TeacherCourseHome() {
     const [name, setName] = useState('')
     const [courses, setCourses] = useState([]);
     const navigate = useNavigate()
+
+    const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
     
     axios.defaults.withCredentials = true;
     useEffect(()=> {
-        axios.get('http://localhost:8081/coursehome')
+        axios.get(`${API_BASE_URL}/coursehome`)
         .then(res => {
         if(res.data.valid){
             setName(res.data.name);
             const userId = sessionStorage.getItem('userId');
             console.log("User ID course home frontend: ", userId);
             if(userId){
-                axios.get(`http://localhost:8081/teacherCourses/${userId}`)
+                axios.get(`${API_BASE_URL}/teacherCourses/${userId}`)
                 .then(res => {
                     setCourses(res.data.courses);
                 })

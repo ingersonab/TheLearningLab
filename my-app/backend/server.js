@@ -7,10 +7,12 @@ const bodyParser = require('body-parser');
 
 const app = express();
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://main.ddm5313f6xd84.amplifyapp.com/"],
     methods: ["POST", "GET"],
     credentials: true
 }));
+
+//http://localhost:3000
 
 app.use(express.json());
 app.use(cookieParser());
@@ -27,9 +29,9 @@ app.use(session({
 
 //initialize SQL connection
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
+    host: "thelearninglabdb.c7wi4u660jcs.us",
+    user: "admin",
+    password: "Beardog836628297!",
     database: "Login"
 })
 
