@@ -2,7 +2,7 @@
 
 ## Partial Deployment
 
-Here is the link for the deployed frontend of the project: https://main.ddm5313f6xd84.amplifyapp.com/
+Here is the link for the partially deployed frontend of the project: https://main.ddm5313f6xd84.amplifyapp.com/
 
 ## Project Description
 
