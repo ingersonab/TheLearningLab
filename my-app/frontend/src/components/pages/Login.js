@@ -50,12 +50,15 @@ function Login() {
       sessionStorage.removeItem('userId');
       navigate('/login');
     }*/
-    
+
+    const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+    //http://localhost:8081
+
     //initial redirect
     useEffect(() => {
       const userType = sessionStorage.getItem('userType');
       if (!userType) {
-        axios.get('http://localhost:8081/studenthome')
+        axios.get(`${API_BASE_URL}/studenthome`)
         .then(res => {
           if (res.data.valid) {
           console.log('Student Home Response: ', res.data);
@@ -64,7 +67,7 @@ function Login() {
         })
         .catch(err => console.log(err));
 
-        axios.get('http://localhost:8081/teacherhome')
+        axios.get(`${API_BASE_URL}/teacherhome`)
         .then(res => {
           if (res.data.valid) {
             console.log('Teacher Home Response: ', res.data);
@@ -81,7 +84,7 @@ function Login() {
       setErrors(err);        
       if(err.email === "" && err.password === "") { 
 
-        axios.post('http://localhost:8081/login', {email: values.email, password: values.password})            
+        axios.post(`${API_BASE_URL}/login`, {email: values.email, password: values.password})            
         .then(res => {                
           if(res.data.errors) {                    
             setBackendError(res.data.errors);                

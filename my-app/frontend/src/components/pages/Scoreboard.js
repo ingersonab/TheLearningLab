@@ -6,14 +6,16 @@ function Scoreboard() {
     const [gameData, setGameData] = useState([]);
     const [scoreboardList, setScoreboardList] = useState([]);
 
+    const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+
     useEffect(() => {
         axios.defaults.withCredentials = true;
         const userId = sessionStorage.getItem('userId');
-        axios.get(`http://localhost:8081/scoreboardlist/${userId}`)
+        axios.get(`${API_BASE_URL}/scoreboardlist/${userId}`)
         .then(res => {
             setScoreboardList(res.data.result);
             const courseId = res.data.courseId;
-            axios.get(`http://localhost:8081/getscoreboarddata/${courseId}`)
+            axios.get(`${API_BASE_URL}/getscoreboarddata/${courseId}`)
             .then(res => {
                setGameData(res.data.gameData) 
             })

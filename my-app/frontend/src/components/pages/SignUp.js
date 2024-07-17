@@ -22,6 +22,8 @@ function Signup() {
     top: 0
   };
 
+    const API_BASE_URL = 'http://LearningLabServer-dev.us-east-1.elasticbeanstalk.com';
+
     const [values, setValues] = useState({        
       name: '',        
       email: '',        
@@ -73,7 +75,7 @@ function Signup() {
         
         const hashedPassword = bcrypt.hashSync(values.password, 10);
 
-        axios.post('http://localhost:8081/signup', { ...values, password: hashedPassword})            
+        axios.post(`${API_BASE_URL}/signup`, { ...values, password: hashedPassword})            
         .then(res => { 
           alert("Account successfully created!");               
           navigate('/login');            
